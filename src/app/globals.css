@@ -1,24 +1,45 @@
-@import "tailwindcss";
+/* @import "tailwindcss"; */
 
-@theme {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Poppins", sans-serif;
+  font-size: 90%;
+  overflow-x: hidden;
+}
+
+@layer utilities {
+  .wrapper {
+    @apply max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  .btn {
+    @apply p-3 rounded-lg flex items-center justify-center gap-2 transition-all duration-300 hover:-translate-y-1 shadow-xl;
+  }
+  .primary-btn {
+    @apply p-3 rounded-lg flex items-center justify-center gap-2 transition-all duration-300 hover:-translate-y-1 shadow-xl bg-primary text-white hover:shadow-primary/40;
+  }
+  .link {
+    @apply hover:text-primary transition-all duration-300;
+  }
+  .text1 {
+    @apply text-[2.5rem] sm:text-[3rem] md:text-[4rem] leading-[1];
+  }
+  .text2 {
+    @apply text-[2rem] sm:text-[2.5rem] md:text-[3rem] leading-[1];
+  }
+  .text3 {
+    @apply text-[1.25rem] sm:text-[1.75rem] md:text-[2rem] leading-tight;
+  }
+  .section-py{
+    @apply py-7 md:py-14
+  }
 }
