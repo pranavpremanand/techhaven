@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Heading from "./Heading";
 import RatingStars from "./StarRating";
+import Link from "next/link";
 
 const EditorsBestChoice = () => {
   return (
@@ -13,7 +14,10 @@ const EditorsBestChoice = () => {
               key={item.id}
               className="grid md:grid-cols-2 gap-2 sm:gap-5 mb-6"
             >
-              <div className="aspect-square md:h-full w-full rounded-2xl bg-white overflow-hidden flex items-center justify-center">
+              <Link
+                href="/"
+                className="group hover:brightness-75 transition-all duration-300 aspect-square md:h-full w-full rounded-2xl bg-white overflow-hidden flex items-center justify-center"
+              >
                 <Image
                   src={item.image}
                   alt={item.title}
@@ -21,13 +25,15 @@ const EditorsBestChoice = () => {
                   height={400}
                   className="object-contain aspect-square"
                 />
-              </div>
+              </Link>
               <div className="space-y-2 flex flex-col justify-between py-1">
-                <p className="text-lg">{item.title}</p>
+                <Link href="/" className="text-lg link">
+                  {item.title}
+                </Link>
                 <div className="sm:space-y-3">
                   <p className="text-primary text-lg">{item.price}</p>
                   <div className="flex items-center gap-2">
-                    <RatingStars rating={item.rating} size={14}/>
+                    <RatingStars rating={item.rating} size={14} />
                   </div>
                 </div>
               </div>

@@ -10,7 +10,7 @@ import { PiPhone } from "react-icons/pi";
 const Footer = () => {
   return (
     <div className="pt-7 md:pt-14 text-sm">
-      <div className="wrapper flex md:flex-row flex-col justify-between gap-8">
+      <div className="wrapper grid md:grid-cols-[1fr,auto,auto] gap-10 md:gap-20">
         <div className="max-w-[20rem]">
           <div className="space-y-1 flex flex-col md:items-center">
             <Image
@@ -26,7 +26,7 @@ const Footer = () => {
             </p>
           </div>
         </div>
-        {/* <div className="space-y-3 flex flex-col items-center">
+        <div className="space-y-3 flex flex-col">
           <h4 className="text-lg font-semibold">Company</h4>
           <ul className="space-y-2">
             <li>
@@ -35,17 +35,17 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link href="/" className="link">
+              <Link href="/contact-us" className="link">
                 Contact Us
               </Link>
             </li>
             <li>
               <Link href="/" className="link">
-                Careers
+                Products
               </Link>
             </li>
           </ul>
-        </div> */}
+        </div>
         {/* <div className="space-y-3 flex flex-col items-center">
           <h4 className="text-lg font-semibold">Information</h4>
           <ul className="space-y-2">

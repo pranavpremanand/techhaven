@@ -13,7 +13,7 @@ const FeaturedProductCardItem = ({ item }) => {
           width={350}
           height={350}
         />
-        <div className="absolute h-full w-full inset-0 bg-white rounded-2xl aspect-square group-hover:scale-50 transition-all duration-300 z-0" />
+        <div className="absolute h-full w-full inset-0 bg-white rounded-2xl aspect-square group-hover:scale-75 transition-all duration-300 z-0" />
       </div>
       <div className="p-5 flex flex-col items-center space-y-2">
         <p className="text-lg text-center">{item.title}</p>

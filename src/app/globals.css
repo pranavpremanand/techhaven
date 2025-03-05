@@ -39,7 +39,10 @@ body {
   .text3 {
     @apply text-[1.25rem] sm:text-[1.75rem] md:text-[2rem] leading-tight;
   }
-  .section-py{
-    @apply py-7 md:py-14
+  .section-py {
+    @apply py-7 md:py-16;
+  }
+  .header-height {
+    @apply mt-[5rem] lg:mt-[10rem];
   }
 }

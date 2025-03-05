@@ -52,11 +52,11 @@ const Banner = () => {
   );
 
   return (
-    <section className="mt-[5rem] lg:mt-[10rem]">
+    <section className="header-height">
       <div className="-slider">
         <div
           ref={sliderRef}
-          className="keen-slider min-h-screen sm:min-h-[80vh]"
+          className="keen-slider min-h-[90vh] sm:min-h-[80vh]"
         >
           {[1, 2, 3].map((i) => (
             <div key={i} className="keen-slider__slide relative">
