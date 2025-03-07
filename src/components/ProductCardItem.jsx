@@ -1,9 +1,18 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const ProductCardItem = ({ item }) => {
   return (
-    <div className="group bg-primary rounded-2xl space-y-3 overflow-hidden transition-all duration-300">
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className="group bg-primary rounded-2xl space-y-3 overflow-hidden transition-all duration-300"
+    >
       <Link
         href="/products/1"
         className="aspect-square flex justify-center items-center relative"
@@ -19,7 +28,10 @@ const ProductCardItem = ({ item }) => {
         <div className="absolute h-full w-full inset-0 bg-white rounded-2xl aspect-square group-hover:rotate-12 group-hover:scale-75 transition-all duration-300 z-0" />
       </Link>
       <div className="p-5 flex flex-col items-center space-y-2">
-        <Link href="/products/1" className="text-lg text-center link hover:!text-black">
+        <Link
+          href="/products/1"
+          className="text-lg text-center link hover:!text-black"
+        >
           {item.title}
         </Link>
         <p className="pb-3">
@@ -33,7 +45,7 @@ const ProductCardItem = ({ item }) => {
           Add to cart
         </Link>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

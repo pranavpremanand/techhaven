@@ -10,6 +10,7 @@ import FeaturedProductsSection from "@/components/home/FeaturedProductsSection";
 import EditorsBestChoice from "@/components/EditorsBestChoice";
 import BrandLogos from "@/components/BrandLogos";
 import Footer from "@/components/Footer";
+import { motion } from "framer-motion";
 
 export default function Home() {
   const [isClient, setIsClient] = useState(false);
@@ -24,7 +25,13 @@ export default function Home() {
       <Flashsale />
       <section className="section-py">
         <div className="wrapper grid lg:grid-cols-2 gap-10">
-          <div className="w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: .5 }}
+            className="w-full"
+          >
             {isClient && (
               <ReactPlayer
                 url="/videos/portable-pocket-projector.mp4"
@@ -52,8 +59,14 @@ export default function Home() {
                 }}
               />
             )}
-          </div>
-          <div className="space-y-5">
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: .5 }}
+            className="space-y-5"
+          >
             <h3 className="text2 font-semibold">Portable Pocket Projector</h3>
             <p>
               New Release Wireless Headphone from SoundPro Sound Technology.
@@ -66,7 +79,7 @@ export default function Home() {
             <Link href="/" className="primary-btn w-[12rem]">
               Shop Now
             </Link>
-          </div>
+          </motion.div>
         </div>
       </section>
       <FeaturedProductsSection />

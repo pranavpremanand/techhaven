@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const AddToCartSection = () => {
   const [quantity, setQuantity] = useState(1);
@@ -18,7 +19,11 @@ const AddToCartSection = () => {
     setQuantity(quantity + 1);
   };
   return (
-    <div className="grid sm:grid-cols-2 items-center gap-8">
+    <motion.div
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.5 }} className="grid sm:grid-cols-2 items-center gap-8">
       <div className="flex items-center gap-5">
         Quantity
         <div className="flex items-center gap-5">
@@ -38,7 +43,7 @@ const AddToCartSection = () => {
         </div>
       </div>
       <button className="primary-btn">Add to Cart</button>
-    </div>
+    </motion.div>
   );
 };
 

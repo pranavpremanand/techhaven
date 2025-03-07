@@ -1,3 +1,5 @@
+"use client";
+
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import SliderWithThumbnails from "@/components/productDetails/SliderWithThumbnails";
@@ -8,8 +10,8 @@ import { FaTruckFast } from "react-icons/fa6";
 import { RxCaretRight } from "react-icons/rx";
 import { RiBox3Fill } from "react-icons/ri";
 import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
-import { FaMinus, FaPlus } from "react-icons/fa";
 import AddToCartSection from "@/components/productDetails/AddToCartSection";
+import { motion } from "framer-motion";
 
 const page = () => {
   return (
@@ -21,7 +23,13 @@ const page = () => {
             <div className="w-full">
               <SliderWithThumbnails />
             </div>
-            <div className="w-full space-y-7">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="w-full space-y-7"
+            >
               <div className="flex items-center gap-2 text-gray-300">
                 <Link href="/products">Products</Link>
                 <RxCaretRight size={20} />
@@ -74,10 +82,16 @@ const page = () => {
                 </p>
               </div>
               <AddToCartSection />
-            </div>
+            </motion.div>
           </div>
           <hr className="border-primary max-w-lg mx-auto" />
-          <div className="space-y-3">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="space-y-3"
+          >
             <h5 className="text-lg font-semibold">Description</h5>
             <p>
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga,
@@ -95,7 +109,7 @@ const page = () => {
               iste architecto eaque velit alias aperiam quae nulla odit fuga at
               hic maiores illum.
             </p>
-          </div>
+          </motion.div>
         </div>
         <RecentlyViewed />
       </div>

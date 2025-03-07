@@ -7,6 +7,7 @@ import RecentlyViewed from "@/components/RecentlyViewed";
 import { featuredProducts } from "@/content/constant";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 const page = () => {
   const [selectAll, setSelectAll] = useState(false);
@@ -57,7 +58,13 @@ const page = () => {
         <div className="header-height section-py">
           <div className="wrapper grid grid-cols-1 lg:grid-cols-[auto,20rem] gap-8">
             <section className="space-y-5">
-              <div className="bg-[#504A4A] rounded-xl p-5 flex justify-between gap-7">
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="bg-[#504A4A] rounded-xl p-5 flex justify-between gap-7"
+              >
                 <div
                   onClick={handleSelectAll}
                   className="flex items-center gap-3 cursor-pointer link"
@@ -78,7 +85,7 @@ const page = () => {
                 >
                   Remove
                 </button>
-              </div>
+              </motion.div>
               <div className="space-y-3">
                 {cartItems.map((item) => (
                   <CartItem
@@ -94,7 +101,13 @@ const page = () => {
             </section>
             <section className="space-y-5">
               {/* summary */}
-              <div className="p-5 space-y-3 border border-white rounded-xl">
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="p-5 space-y-3 border border-white rounded-xl"
+              >
                 <div className="flex items-center gap-5">
                   <h6 className="text-lg">Summary</h6>
                   <span className="h-[1px] w-full bg-[#FFF323]" />
@@ -121,7 +134,7 @@ const page = () => {
                     </Link>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </section>
           </div>
         </div>

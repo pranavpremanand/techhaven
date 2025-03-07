@@ -8,6 +8,7 @@ import { State, City } from "country-state-city";
 import { useState } from "react";
 import RecentlyViewed from "@/components/RecentlyViewed";
 import { featuredProducts } from "@/content/constant";
+import { motion } from "framer-motion";
 
 const page = () => {
   const [states, setStates] = useState(State.getStatesOfCountry("IN"));
@@ -25,7 +26,13 @@ const page = () => {
       <div className="header-height">
         <div className="section-py wrapper space-y-14">
           <div className="flex flex-col-reverse md:grid grid-cols-2 lg:grid-cols-[auto,30rem] gap-8">
-            <div className="space-y-5">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="space-y-5"
+            >
               <h2 className="text3">Shipping Details</h2>
               <form className="space-y-3">
                 <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-5">
@@ -101,8 +108,14 @@ const page = () => {
                   </button>
                 </div>
               </form>
-            </div>
-            <div className="bg-[#252525] p-5 rounded-xl !h-fit">
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="bg-[#252525] p-5 rounded-xl !h-fit"
+            >
               {/* coupon code */}
               <form className="space-y-3 p-5 bg-white text-black rounded-xl">
                 <div className="flex items-center gap-3">
@@ -162,7 +175,7 @@ const page = () => {
                   </div> */}
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
           <RecentlyViewed />
         </div>

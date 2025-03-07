@@ -2,6 +2,7 @@ import Image from "next/image";
 import Heading from "./Heading";
 import RatingStars from "./StarRating";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const EditorsBestChoice = () => {
   return (
@@ -10,7 +11,11 @@ const EditorsBestChoice = () => {
         <Heading title="Editor's best choice" />
         <div className="pt-8 grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
           {products.map((item) => (
-            <div
+            <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: .5 }}
               key={item.id}
               className="grid md:grid-cols-2 gap-2 sm:gap-5 mb-6"
             >
@@ -37,7 +42,7 @@ const EditorsBestChoice = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

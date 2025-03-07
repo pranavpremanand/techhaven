@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { motion } from "framer-motion";
 
 const CartItem = ({
   item,
@@ -58,7 +59,11 @@ const CartItem = ({
   };
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-4 bg-white text-black p-5 rounded-xl shadow-sm">
+    <motion.div
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.5 }} className="flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-4 bg-white text-black p-5 rounded-xl shadow-sm">
       <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
         <input
           checked={selectedItems.includes(item)}
@@ -101,7 +106,7 @@ const CartItem = ({
           {/* <IoIosHeartEmpty size={20} className="text-red-600" /> */}
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

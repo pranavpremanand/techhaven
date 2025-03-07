@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
+import { motion } from "framer-motion";
 
 const Flashsale = () => {
   const [isClient, setIsClient] = useState(false);
@@ -55,7 +56,13 @@ const Flashsale = () => {
   return (
     <section className="section-py">
       <Heading title="Flash Sale today" />
-      <div className="wrapper mt-9 grid sm:grid-cols-2 lg:grid-cols-[25%,1fr,1fr,1fr] gap-7">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: .5 }}
+        className="wrapper mt-9 grid sm:grid-cols-2 lg:grid-cols-[25%,1fr,1fr,1fr] gap-7"
+      >
         <div className="rounded-2xl overflow-hidden relative lg:h-[110%] aspect-[3/4] sm:aspect-auto">
           <div className="absolute bg-white/20 inset-0 w-full h-full flex flex-col justify-between gap-6 p-4">
             <h5 className="text-3xl font-semibold text-center pt-14 lg:pt-8">
@@ -161,7 +168,7 @@ const Flashsale = () => {
               <p>
                 <del>₹{item.price}</del> -{" "}
                 <span className="text-primary group-hover:text-black">
-                ₹{item.offerPrice}
+                  ₹{item.offerPrice}
                 </span>
               </p>
               <div className="w-full pt-2">
@@ -179,7 +186,7 @@ const Flashsale = () => {
             </div>
           </div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 };

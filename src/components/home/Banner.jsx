@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useKeenSlider } from "keen-slider/react";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 const Banner = () => {
   const [currentSlide, setCurrentSlide] = useState(0); // Track the current slide index
@@ -70,7 +71,13 @@ const Banner = () => {
               />
               <div className="absolute bg-white/60 md:bg-white/20 text-black inset-0 h-full w-full">
                 <div className="wrapper h-full flex items-center">
-                  <div className="max-w-lg space-y-2">
+                  <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: .5 }}
+                    className="max-w-lg space-y-2"
+                  >
                     <p className="text-lg text-primary font-bold">
                       HOT PRODUCTS
                     </p>
@@ -87,7 +94,7 @@ const Banner = () => {
                     >
                       Shop Now
                     </Link>
-                  </div>
+                  </motion.div>
                 </div>
               </div>
             </div>
@@ -96,7 +103,13 @@ const Banner = () => {
       </div>
 
       {/* Pagination Dots */}
-      <div className="flex justify-center py-8 gap-2">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: .5 }}
+        className="flex justify-center py-8 gap-2"
+      >
         {[1, 2, 3].map((i, index) => (
           <div
             key={i}
@@ -106,7 +119,7 @@ const Banner = () => {
             onClick={() => instanceRef.current?.moveToIdx(index)} // Navigate to the clicked slide
           />
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 };

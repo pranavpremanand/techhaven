@@ -8,6 +8,7 @@ import RecentlyViewed from "@/components/RecentlyViewed";
 import { featuredProducts } from "@/content/constant";
 import Link from "next/link";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 const page = () => {
   const [showFilter, setShowFilter] = useState(true);
@@ -21,7 +22,11 @@ const page = () => {
         >
           {showFilter ? "Hide Filter" : "Show Filter"}
         </button>
-        <div
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
           className={`grid ${showFilter && "md:grid-cols-[15rem,1fr]"} gap-10`}
         >
           <div
@@ -75,7 +80,7 @@ const page = () => {
               <ProductCardItem key={Math.random()} item={item} />
             ))}
           </div>
-        </div>
+        </motion.div>
         <EditorsBestChoice />
         <RecentlyViewed />
       </div>

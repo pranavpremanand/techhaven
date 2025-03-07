@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useKeenSlider } from "keen-slider/react";
 import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi";
+import { motion } from "framer-motion";
 
 const images = [
   { src: "/images/product-details/1.webp", alt: "1" },
@@ -53,7 +54,13 @@ const SliderWithThumbnails = () => {
   }, [currentSlide, thumbnail]);
 
   return (
-    <div className="space-y-6 w-full">
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className="space-y-6 w-full"
+    >
       {/* Main Slider */}
       <div ref={sliderRef} className="keen-slider w-full">
         {images.map((image, index) => (
@@ -102,7 +109,7 @@ const SliderWithThumbnails = () => {
           <PiCaretRightBold size={20} />
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

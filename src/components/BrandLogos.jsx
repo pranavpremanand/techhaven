@@ -2,6 +2,7 @@
 
 // import { useKeenSlider } from "keen-slider/react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 // const animation = { duration: 20000, easing: (t) => t };
 
@@ -44,7 +45,11 @@ const BrandLogos = () => {
   //   },
   // });
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
       // ref={sliderRef}
       // keen-slider
       className="bg-white py-6"
@@ -63,7 +68,7 @@ const BrandLogos = () => {
           </div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
