@@ -153,7 +153,7 @@ const Flashsale = () => {
                 alt={item.title}
                 width={400}
                 height={450}
-                className="object-cover w-full h-full group-hover:scale-110 transition-all duration-300"
+                className="object-contain w-full bg-white aspect-square group-hover:scale-110 transition-all duration-300"
               />
             </Link>
             <div className="p-5 flex flex-col items-center space-y-2">

@@ -53,7 +53,7 @@ const Banner = () => {
 
   return (
     <section className="header-height">
-      <div className="-slider">
+      <div className="">
         <div
           ref={sliderRef}
           className="keen-slider min-h-[90vh] sm:min-h-[80vh]"
@@ -65,10 +65,10 @@ const Banner = () => {
                 width={1920}
                 height={1080}
                 alt="hero"
-                className="absolute top-0 left-0 w-full h-full object-cover object-bottom sm:object-top"
+                className="absolute top-0 left-0 w-full h-full object-cover object-top sm:object-top"
                 priority
               />
-              <div className="absolute bg-white/30 text-black inset-0 h-full w-full">
+              <div className="absolute bg-white/60 md:bg-white/20 text-black inset-0 h-full w-full">
                 <div className="wrapper h-full flex items-center">
                   <div className="max-w-lg space-y-2">
                     <p className="text-lg text-primary font-bold">
