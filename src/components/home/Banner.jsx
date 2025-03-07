@@ -80,9 +80,12 @@ const Banner = () => {
                       Accessories, and Gadgets
                     </p>
                     <p className="">Start from</p>
-                    <h2 className="text2 font-medium pb-3">$299.00</h2>
-                    <Link href="/" className="w-[12rem] primary-btn uppercase">
-                      Learn More
+                    <h2 className="text2 font-medium pb-3">₹2990</h2>
+                    <Link
+                      href="/products"
+                      className="w-[12rem] primary-btn uppercase"
+                    >
+                      Shop Now
                     </Link>
                   </div>
                 </div>

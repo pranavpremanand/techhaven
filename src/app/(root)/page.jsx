@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import FeaturedProductsSection from "@/components/home/FeaturedProductsSection";
 import EditorsBestChoice from "@/components/EditorsBestChoice";
-import BrandLogos from "@/components/home/BrandLogos";
+import BrandLogos from "@/components/BrandLogos";
 import Footer from "@/components/Footer";
 
 export default function Home() {

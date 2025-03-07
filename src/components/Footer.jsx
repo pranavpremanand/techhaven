@@ -35,13 +35,13 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link href="/contact-us" className="link">
-                Contact Us
+              <Link href="/products" className="link">
+                Products
               </Link>
             </li>
             <li>
-              <Link href="/" className="link">
-                Products
+              <Link href="/contact-us" className="link">
+                Contact Us
               </Link>
             </li>
           </ul>
@@ -86,7 +86,7 @@ const Footer = () => {
             <li>
               <Link
                 href={`mailto:${companyDetails.email}`}
-                className="link flex items-center gap-1"
+                className="link flex items-center gap-2"
               >
                 <IoMailOutline size={22} />
                 {companyDetails.email}

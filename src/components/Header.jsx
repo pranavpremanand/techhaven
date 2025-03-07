@@ -56,17 +56,17 @@ const Header = () => {
             />
             <FaSearch size={20} />
           </div>
-          <Link href="/">
+          <Link href="/cart" className="link">
             <FaShoppingCart size={25} />
           </Link>
           <Link
-            href="/"
+            href="#"
             className="lg:!flex !hidden min-w-[10rem] primary-btn uppercase"
           >
             <IoPersonCircle size={30} />
             My Account
           </Link>
-          <Link href="/" className="lg:hidden">
+          <Link href="#" className="lg:hidden">
             <IoPersonCircle size={30} />
           </Link>
         </div>
@@ -108,25 +108,25 @@ const Header = () => {
 
 export default Header;
 
-const categories = [
+export const categories = [
   {
     name: "Accessories",
-    url: "#",
+    url: "/products",
   },
   {
     name: "Smartphones",
-    url: "#",
+    url: "/products",
   },
   {
     name: "Laptops",
-    url: "#",
+    url: "/products",
   },
   {
     name: "Gaming Equipments",
-    url: "#",
+    url: "/products",
   },
   {
     name: "TV & Monitors",
-    url: "#",
+    url: "/products",
   },
 ];

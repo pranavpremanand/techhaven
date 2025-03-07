@@ -1,7 +1,7 @@
 "use client";
 
 import Heading from "../Heading";
-import FeaturedProductCardItem from "./FeaturedProductCardItem";
+import ProductCardItem from "../ProductCardItem";
 import Link from "next/link";
 import Image from "next/image";
 import { featuredProducts } from "@/content/constant";
@@ -16,7 +16,7 @@ const FeaturedProductsSection = () => {
         <Heading title="Featured Products" />
         <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {featuredProducts.map((item) => (
-            <FeaturedProductCardItem key={item.id} item={item} />
+            <ProductCardItem key={item.id} item={item} />
           ))}
           <div className="!row-start-1 sm:col-span-2 md:col-span-3 lg:col-start-4 lg:row-span-2 lg:col-span-1 bg-[#C4C4C4] text-white p-5 grid sm:grid-cols-2 lg:flex flex-col justify-between items-center gap-8 rounded-2xl lg:text-center">
             <div className="flex flex-col lg:items-center gap-4 lg:gap-8">
@@ -26,7 +26,7 @@ const FeaturedProductsSection = () => {
                 Technology.
               </p>
               <Link
-                href="/"
+                href="/products"
                 className="uppercase btn bg-black text-white hover:bg-primary w-fit"
               >
                 Shop Now

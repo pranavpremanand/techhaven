@@ -18,7 +18,7 @@ const page = () => {
           <h1 className="text2 text-center font-semibold">Contact Us</h1>
           <div className="pt-4 space-y-6">
             <div className="space-y-2">
-              <h2 className="text3 font-bold">Leave a Message</h2>
+              <h2 className="text3 font-semibold">Leave a Message</h2>
               <div className="h-2 w-full max-w-md bg-white relative rounded-md overflow-hidden">
                 <div className="absolute inset-0 bg-primary w-[70%]" />
               </div>

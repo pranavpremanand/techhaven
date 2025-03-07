@@ -1,6 +1,6 @@
 import { FaStar, FaRegStar } from "react-icons/fa";
 
-const RatingStars = ({ rating, size }) => {
+const RatingStars = ({ rating, size, className }) => {
   const totalStars = 5;
   const filledStars = Math.floor(rating);
   const emptyStars = totalStars - filledStars;
@@ -9,12 +9,12 @@ const RatingStars = ({ rating, size }) => {
     <div className="flex items-center gap-[.1rem]">
       {/* Render filled stars */}
       {[...Array(filledStars)].map((_, index) => (
-        <FaStar size={size} key={`filled-${index}`} />
+        <FaStar size={size} className={className} key={`filled-${index}`} />
       ))}
 
       {/* Render empty stars */}
       {[...Array(emptyStars)].map((_, index) => (
-        <FaRegStar size={size} key={`empty-${index}`} />
+        <FaRegStar size={size} className={className} key={`empty-${index}`} />
       ))}
     </div>
   );

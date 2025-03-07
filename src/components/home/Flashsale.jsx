@@ -2,6 +2,7 @@
 
 import Heading from "@/components/Heading";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 
@@ -143,7 +144,10 @@ const Flashsale = () => {
             key={item.title}
             className="rounded-2xl overflow-hidden border transition-all duration-300 cursor-pointer hover:bg-primary group"
           >
-            <div className="aspect-[3/3.2] w-full overflow-hidden">
+            <Link
+              href="/products/1"
+              className="aspect-[3/3.2] w-full overflow-hidden"
+            >
               <Image
                 src={item.image}
                 alt={item.title}
@@ -151,13 +155,13 @@ const Flashsale = () => {
                 height={450}
                 className="object-cover w-full h-full group-hover:scale-110 transition-all duration-300"
               />
-            </div>
+            </Link>
             <div className="p-5 flex flex-col items-center space-y-2">
               <p className="text-lg text-center">{item.title}</p>
               <p>
-                <del>{item.price}</del> -{" "}
+                <del>₹{item.price}</del> -{" "}
                 <span className="text-primary group-hover:text-black">
-                  {item.offerPrice}
+                ₹{item.offerPrice}
                 </span>
               </p>
               <div className="w-full pt-2">
@@ -186,24 +190,24 @@ const products = [
   {
     title: "Smartwatch",
     image: "/images/flashsale/1.webp",
-    price: "$29.99",
-    offerPrice: "$19.99",
+    price: 2900,
+    offerPrice: 1950,
     available: 18,
     sold: 20,
   },
   {
     title: "MacBook  M1",
     image: "/images/flashsale/2.png",
-    price: "$29.99",
-    offerPrice: "$19.99",
+    price: 2900,
+    offerPrice: 1950,
     available: 18,
     sold: 20,
   },
   {
     title: "Wireless Headphones",
     image: "/images/flashsale/3.webp",
-    price: "$29.99",
-    offerPrice: "$19.99",
+    price: 2900,
+    offerPrice: 1950,
     available: 18,
     sold: 20,
   },
