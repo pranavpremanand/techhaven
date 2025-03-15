@@ -1,7 +1,5 @@
 "use client";
 
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 import dynamic from "next/dynamic";
 // import MapComponent from "@/components/MapComponent";
 
@@ -12,7 +10,6 @@ const MapComponent = dynamic(() => import("@/components/MapComponent"), {
 const page = () => {
   return (
     <>
-      <Header />
       <section className="header-height">
         <div className="wrapper section-py !pt-20 space-y-4">
           <h1 className="text2 text-center font-semibold">Contact Us</h1>
@@ -80,7 +77,6 @@ const page = () => {
           </div>
         </div>
       </section>
-      <Footer />
     </>
   );
 };

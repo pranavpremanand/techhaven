@@ -1,7 +1,5 @@
 "use client";
 
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 import { RiCoupon3Line } from "react-icons/ri";
 import pincodes from "indian-pincodes";
 import { State, City } from "country-state-city";
@@ -22,7 +20,6 @@ const page = () => {
   //       state: "",
   return (
     <>
-      <Header />
       <div className="header-height">
         <div className="section-py wrapper space-y-14">
           <div className="flex flex-col-reverse md:grid grid-cols-2 lg:grid-cols-[auto,30rem] gap-8">
@@ -180,7 +177,6 @@ const page = () => {
           <RecentlyViewed />
         </div>
       </div>
-      <Footer />
     </>
   );
 };

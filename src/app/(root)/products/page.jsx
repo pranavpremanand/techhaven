@@ -1,8 +1,7 @@
 "use client";
 import BrandLogos from "@/components/BrandLogos";
 import EditorsBestChoice from "@/components/EditorsBestChoice";
-import Footer from "@/components/Footer";
-import Header, { categories } from "@/components/Header";
+import { categories } from "@/components/Header";
 import ProductCardItem from "@/components/ProductCardItem";
 import RecentlyViewed from "@/components/RecentlyViewed";
 import { featuredProducts } from "@/content/constant";
@@ -13,9 +12,8 @@ import { motion } from "framer-motion";
 const page = () => {
   const [showFilter, setShowFilter] = useState(true);
   return (
-    <div className="header-height">
-      <Header />
-      <div className="wrapper section-py">
+    <>
+      <div className="header-height wrapper section-py">
         <button
           onClick={() => setShowFilter(!showFilter)}
           className="primary-btn my-7 lg:mb-7 lg:mt-0"
@@ -85,8 +83,7 @@ const page = () => {
         <RecentlyViewed />
       </div>
       <BrandLogos />
-      <Footer />
-    </div>
+    </>
   );
 };
 

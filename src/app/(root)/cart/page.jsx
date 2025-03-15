@@ -1,8 +1,6 @@
 "use client";
 
 import CartItem from "@/components/cart/CartItem";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 import RecentlyViewed from "@/components/RecentlyViewed";
 import { featuredProducts } from "@/content/constant";
 import Link from "next/link";
@@ -53,7 +51,6 @@ const page = () => {
 
   return (
     <>
-      <Header />
       <div className="space-y-7">
         <div className="header-height section-py">
           <div className="wrapper grid grid-cols-1 lg:grid-cols-[auto,20rem] gap-8">
@@ -140,7 +137,6 @@ const page = () => {
         </div>
         <RecentlyViewed />
       </div>
-      <Footer />
     </>
   );
 };

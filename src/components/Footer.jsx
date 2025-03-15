@@ -121,7 +121,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="bg-primary py-3 mt-10">
+      <div className="bg-primary pt-3 mt-10 pb-[5rem] lg:pb-3">
         <div className="wrapper text-center">
           <p>
             Copyright © {new Date().getFullYear()} Techhaven. All Right Reseved

@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useKeenSlider } from "keen-slider/react";
 import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi";
 import { motion } from "framer-motion";
+import ZoomImage from "./ZoomImage";
 
 const images = [
   { src: "/images/product-details/1.webp", alt: "1" },
@@ -46,7 +47,6 @@ const SliderWithThumbnails = () => {
     },
   });
 
-  // Center the active thumbnail whenever the main slider changes
   useEffect(() => {
     if (thumbnail.current) {
       thumbnail.current.moveToIdx(currentSlide);
@@ -66,13 +66,9 @@ const SliderWithThumbnails = () => {
         {images.map((image, index) => (
           <div
             key={index}
-            className="keen-slider__slide rounded-xl overflow-hidden sm:aspect-video lg:aspect-auto flex justify-center bg-primary/10"
+            className="keen-slider__slide rounded-xl overflow-visible sm:aspect-video lg:aspect-auto flex justify-center bg-primary/10"
           >
-            <img
-              src={image.src}
-              alt={image.alt}
-              className="aspect-square h-full object-contain"
-            />
+            <ZoomImage image={image}/>
           </div>
         ))}
       </div>

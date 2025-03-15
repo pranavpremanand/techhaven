@@ -1,6 +1,5 @@
 "use client";
 
-import Header from "@/components/Header";
 import Banner from "@/components/home/Banner";
 import Flashsale from "@/components/home/Flashsale";
 import Link from "next/link";
@@ -9,7 +8,6 @@ import ReactPlayer from "react-player";
 import FeaturedProductsSection from "@/components/home/FeaturedProductsSection";
 import EditorsBestChoice from "@/components/EditorsBestChoice";
 import BrandLogos from "@/components/BrandLogos";
-import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 
 export default function Home() {
@@ -20,7 +18,6 @@ export default function Home() {
   }, []);
   return (
     <>
-      <Header />
       <Banner />
       <Flashsale />
       <section className="section-py">
@@ -29,7 +26,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: .5 }}
+            transition={{ duration: 0.5 }}
             className="w-full"
           >
             {isClient && (
@@ -64,7 +61,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: .5 }}
+            transition={{ duration: 0.5 }}
             className="space-y-5"
           >
             <h3 className="text2 font-semibold">Portable Pocket Projector</h3>
@@ -85,7 +82,6 @@ export default function Home() {
       <FeaturedProductsSection />
       <EditorsBestChoice />
       <BrandLogos />
-      <Footer />
     </>
   );
 }

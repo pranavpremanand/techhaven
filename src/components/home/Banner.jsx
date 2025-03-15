@@ -3,11 +3,19 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useKeenSlider } from "keen-slider/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { categories } from "../Header";
+import ReactPlayer from "react-player";
 
 const Banner = () => {
   const [currentSlide, setCurrentSlide] = useState(0); // Track the current slide index
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const [sliderRef, instanceRef] = useKeenSlider(
     {
       loop: true,
@@ -55,34 +63,61 @@ const Banner = () => {
   return (
     <section className="header-height">
       <div className="">
-        <div
-          ref={sliderRef}
-          className="keen-slider min-h-[90vh] sm:min-h-[80vh]"
-        >
+        {/* min-h-[90vh] sm:min-h-[80vh] */}
+        <div ref={sliderRef} className="keen-slider md:min-h-[80vh]">
           {[1, 2, 3].map((i) => (
             <div key={i} className="keen-slider__slide relative">
-              <Image
-                src="/images/home-banner.webp"
-                width={1920}
-                height={1080}
-                alt="hero"
-                className="absolute top-0 left-0 w-full h-full object-cover object-top sm:object-top"
-                priority
-              />
-              <div className="absolute bg-white/60 md:bg-white/20 text-black inset-0 h-full w-full">
-                <div className="wrapper h-full flex items-center">
+              <div className="relative text-white inset-0 h-full w-full">
+                {isClient && (
+                  <ReactPlayer
+                    url="/videos/banner.mp4"
+                    loop
+                    muted
+                    width="100%"
+                    height="100%"
+                    playsinline
+                    playing
+                    className="absolute top-0 left-0 w-full h-full object-cover object-top sm:object-top"
+                    pip={false}
+                    config={{
+                      file: {
+                        attributes: {
+                          style: {
+                            objectFit: "cover",
+                            width: "100%",
+                            height: "100%",
+                          },
+                          controlsList: "nodownload noplaybackrate",
+                          disablePictureInPicture: true,
+                          playsInline: true,
+                        },
+                      },
+                    }}
+                  />
+                )}
+                {/* <Image
+                  src="/images/home-banner.webp"
+                  width={1920}
+                  height={1080}
+                  alt="hero"
+                  className="absolute top-0 left-0 w-full h-full object-cover object-top sm:object-top"
+                  priority
+                /> */}
+                {/* bg-white/60 md:bg-white/20  */}
+                <div className="absolute top-0 left-0 w-full h-full"></div>
+                <div className="wrapper h-full flex items-center relative">
                   <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: .5 }}
-                    className="max-w-lg space-y-2"
+                    transition={{ duration: 0.5 }}
+                    className="max-w-lg space-y-2 py-8"
                   >
                     <p className="text-lg text-primary font-bold">
                       HOT PRODUCTS
                     </p>
                     <h1 className="text1">Welcome to Techhaven</h1>
-                    <p className="font-bold text-lg text-[#404040]">
+                    <p className="font-bold text-lg text-[#c6c6c6] leading-tight">
                       Your One-Stop Shop for the Latest Electronics,
                       Accessories, and Gadgets
                     </p>
@@ -107,7 +142,7 @@ const Banner = () => {
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: .5 }}
+        transition={{ duration: 0.5 }}
         className="flex justify-center py-8 gap-2"
       >
         {[1, 2, 3].map((i, index) => (
@@ -120,8 +155,99 @@ const Banner = () => {
           />
         ))}
       </motion.div>
+
+      <div className="wrapper w-full lg:hidden block">
+        <CategoriesSlider />
+      </div>
     </section>
   );
 };
 
 export default Banner;
+
+// categories slider
+const CategoriesSlider = () => {
+  const [sliderRef] = useKeenSlider(
+    {
+      loop: true,
+      slides: {
+        perView: 3,
+        spacing: 10,
+      },
+      breakpoints: {
+        "(max-width: 370px)": {
+          slides: {
+            perView: 1,
+            spacing: 15,
+          },
+        },
+        "(min-width: 371px)": {
+          slides: {
+            perView: 2,
+            spacing: 15,
+          },
+        },
+        "(min-width: 650px)": {
+          slides: {
+            perView: 3,
+            spacing: 15,
+          },
+        },
+      },
+    },
+    [
+      (slider) => {
+        let timeout;
+        let mouseOver = false;
+        function clearNextTimeout() {
+          clearTimeout(timeout);
+        }
+        function nextTimeout() {
+          clearTimeout(timeout);
+          if (mouseOver) return;
+          timeout = setTimeout(() => {
+            slider.next();
+          }, 1000);
+        }
+        slider.on("created", () => {
+          slider.container.addEventListener("mouseover", () => {
+            mouseOver = true;
+            clearNextTimeout();
+          });
+          slider.container.addEventListener("mouseout", () => {
+            mouseOver = false;
+            nextTimeout();
+          });
+          nextTimeout();
+        });
+        slider.on("dragStarted", clearNextTimeout);
+        slider.on("animationEnded", nextTimeout);
+        slider.on("updated", nextTimeout);
+      },
+    ]
+  );
+  return (
+    <div
+      // ref={sliderRef}
+      className="pb-3 grid grid-cols-2 gap-3"
+      // keen-slider
+    >
+      {categories.map((category, i) => {
+        const isLastItem = i === categories.length - 1;
+        const isLastItemEven = isLastItem && i % 2 === 0;
+        return (
+          <Link
+            key={category.name}
+            href={category.url}
+            // keen-slider__slide
+            className={`${
+              isLastItemEven && "col-span-2 w-1/2 mx-auto"
+            } p-2 bg-[#242424] rounded-md text-center w-full h-full mx-auto flex items-center justify-center link text-sm min-h-[4rem]`}
+          >
+            {category.name}
+          </Link>
+        );
+      })}
+    </div>
+  );
+};

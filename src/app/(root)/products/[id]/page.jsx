@@ -1,7 +1,5 @@
 "use client";
 
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 import SliderWithThumbnails from "@/components/productDetails/SliderWithThumbnails";
 import RecentlyViewed from "@/components/RecentlyViewed";
 import RatingStars from "@/components/StarRating";
@@ -16,7 +14,6 @@ import { motion } from "framer-motion";
 const page = () => {
   return (
     <>
-      <Header />
       <div className="header-height">
         <div className="wrapper section-py space-y-7 md:space-y-14 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-[25rem,auto] xl:grid-cols-[30rem,auto] gap-10 w-full">
@@ -113,7 +110,6 @@ const page = () => {
         </div>
         <RecentlyViewed />
       </div>
-      <Footer />
     </>
   );
 };
