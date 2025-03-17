@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
 
 const ProductCardItem = ({ item }) => {
   return (
@@ -11,8 +12,15 @@ const ProductCardItem = ({ item }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="group bg-primary rounded-2xl space-y-3 overflow-hidden transition-all duration-300"
+      className="group bg-primary rounded-2xl space-y-3 overflow-hidden transition-all duration-300 relative"
     >
+      {/* <button className="absolute z-50 right-2 top-2">
+       <IoIosHeart
+          size={25}
+          className="text-red-600"
+        />
+        <IoIosHeartEmpty size={25} className="text-red-600" />
+      </button> */}
       <Link
         href="/products/1"
         className="aspect-square flex justify-center items-center relative"

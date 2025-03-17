@@ -13,6 +13,7 @@ export const featuredProducts = [
     price: 2900,
     offerPrice: 1950,
     cartQuantity: 1,
+    rating:4
   },
   {
     id: 2,
@@ -21,6 +22,7 @@ export const featuredProducts = [
     price: 2900,
     offerPrice: 1950,
     cartQuantity: 1,
+    rating:4
   },
   {
     id: 3,
@@ -29,6 +31,7 @@ export const featuredProducts = [
     price: 2900,
     offerPrice: 1950,
     cartQuantity: 1,
+    rating:4
   },
   {
     id: 4,
@@ -37,6 +40,7 @@ export const featuredProducts = [
     price: 2900,
     offerPrice: 1950,
     cartQuantity: 1,
+    rating:4
   },
   {
     id: 5,
@@ -45,6 +49,7 @@ export const featuredProducts = [
     price: 2900,
     offerPrice: 1950,
     cartQuantity: 1,
+    rating:4
   },
   {
     id: 6,
@@ -53,5 +58,6 @@ export const featuredProducts = [
     price: 2900,
     offerPrice: 1950,
     cartQuantity: 1,
+    rating:4
   },
 ];

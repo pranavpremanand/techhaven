@@ -1,8 +1,5 @@
-import Image from "next/image";
 import Heading from "./Heading";
-import RatingStars from "./StarRating";
-import Link from "next/link";
-import { motion } from "framer-motion";
+import ProductCardItem2 from "./ProductCardItem2";
 
 const EditorsBestChoice = () => {
   return (
@@ -11,38 +8,7 @@ const EditorsBestChoice = () => {
         <Heading title="Editor's best choice" />
         <div className="pt-8 grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
           {products.map((item) => (
-            <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: .5 }}
-              key={item.id}
-              className="grid md:grid-cols-2 gap-2 sm:gap-5 mb-6"
-            >
-              <Link
-                href="/products/1"
-                className="group hover:brightness-75 transition-all duration-300 aspect-square md:h-full w-full rounded-2xl bg-white overflow-hidden flex items-center justify-center"
-              >
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  width={400}
-                  height={400}
-                  className="object-contain aspect-square"
-                />
-              </Link>
-              <div className="space-y-2 flex flex-col justify-between py-1">
-                <Link href="/products/1" className="text-lg link">
-                  {item.title}
-                </Link>
-                <div className="sm:space-y-3">
-                  <p className="text-primary text-lg">₹{item.price}</p>
-                  <div className="flex items-center gap-2">
-                    <RatingStars rating={item.rating} size={14} />
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+            <ProductCardItem2 key={item.id} item={item} />
           ))}
         </div>
       </div>

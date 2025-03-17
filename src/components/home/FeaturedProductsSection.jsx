@@ -48,7 +48,7 @@ const FeaturedProductsSection = () => {
             />
           </motion.div>
         </div>
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -70,7 +70,7 @@ const FeaturedProductsSection = () => {
           <button className="hover:bg-primary transition-all duration-300 p-1 min-w-[3rem] h-[2rem] flex items-center justify-center rounded-lg text-white bg-[#313131]">
             <PiCaretRightBold size={21} />
           </button>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );

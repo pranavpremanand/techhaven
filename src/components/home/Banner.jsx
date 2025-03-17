@@ -103,7 +103,7 @@ const Banner = () => {
                   className="absolute top-0 left-0 w-full h-full object-cover object-top sm:object-top"
                   priority
                 /> */}
-                {/* bg-white/60 md:bg-white/20  */}
+                {/* bg-white/60 md:bg-white/15  */}
                 <div className="absolute top-0 left-0 w-full h-full"></div>
                 <div className="wrapper h-full flex items-center relative">
                   <motion.div

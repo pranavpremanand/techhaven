@@ -22,10 +22,10 @@ body {
     @apply max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8;
   }
   .btn {
-    @apply p-3 rounded-lg flex items-center justify-center gap-2 transition-all duration-300 hover:-translate-y-1 shadow-xl;
+    @apply p-3 rounded-lg flex items-center justify-center gap-2 transition-all duration-300 hover:-translate-y-1 shadow-xl text-sm;
   }
   .primary-btn {
-    @apply p-3 rounded-lg flex items-center justify-center gap-2 transition-all duration-300 hover:-translate-y-1 shadow-xl bg-primary text-white hover:shadow-primary/40;
+    @apply p-3 rounded-lg flex items-center justify-center gap-2 transition-all duration-300 hover:-translate-y-1 shadow-xl bg-primary text-white hover:shadow-primary/40 text-sm;
   }
   .link {
     @apply hover:text-primary transition-all duration-300;
@@ -43,7 +43,7 @@ body {
     @apply py-7 md:py-16;
   }
   .header-height {
-    @apply mt-0 lg:mt-[12rem];
+    @apply mt-0 lg:mt-[12.1rem];
     /* @apply mt-[7rem] lg:mt-[12rem]; */
   }
 }

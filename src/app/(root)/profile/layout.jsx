@@ -1,11 +1,12 @@
 "use client";
 import { BsBookmarkHeartFill } from "react-icons/bs";
 import { FaBoxOpen } from "react-icons/fa";
-import { IoHomeOutline, IoSettings } from "react-icons/io5";
-import { MdDashboard } from "react-icons/md";
+import { IoHomeOutline } from "react-icons/io5";
+import { MdDashboard, MdOutlinePassword } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
 import { PiCaretRight } from "react-icons/pi";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 const dashboardOptions = [
   {
@@ -28,9 +29,9 @@ const dashboardOptions = [
   },
   {
     id: 4,
-    label: "Settings",
-    icon: <IoSettings size={20} />,
-    path: "/profile/settings",
+    label: "Change Password",
+    icon: <MdOutlinePassword size={20} />,
+    path: "/profile/change-password",
   },
   {
     id: 5,
@@ -53,25 +54,31 @@ const layout = ({ children }) => {
           <span>User Account</span>
           <PiCaretRight size={17} />
           <span className="text-[#2DA5F3]">
-            {dashboardOptions.find((item) => item.path === pathname).label}
+            {
+            // pathname.startsWith("/profile/orders/") &&
+            // pathname !== "/profile/orders"
+            //   ? "Order Details"
+            //   : 
+              dashboardOptions.find((item) => item.path === pathname).label}
           </span>
         </div>
       </div>
       <section className="wrapper grid grid-cols-1 lg:grid-cols-[15rem,auto] gap-7">
         <div className="bg-white text-[#5F6C72] h-fit py-5 rounded-md">
           {dashboardOptions.map((item) => (
-            <div
+            <Link
               key={item.id}
+              href={item.path}
               className={`${
                 item.path === pathname ? "bg-primary text-white" : ""
               } flex items-center gap-3 px-5 py-4 cursor-pointer hover:bg-primary hover:text-white transition-all duration-300 ease-in-out`}
             >
               {item.icon}
               <span>{item.label}</span>
-            </div>
+            </Link>
           ))}
         </div>
-        <div>{children}</div>
+        <div id="content">{children}</div>
       </section>
     </div>
   );
