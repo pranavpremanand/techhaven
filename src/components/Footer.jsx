@@ -1,4 +1,5 @@
 import { companyDetails } from "@/content/constant";
+import { createUrlParam } from "@/utils/helper";
 import Image from "next/image";
 import Link from "next/link";
 import { AiFillInstagram } from "react-icons/ai";
@@ -6,6 +7,7 @@ import { FaFacebook, FaLinkedinIn } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoMailOutline } from "react-icons/io5";
 import { PiPhone } from "react-icons/pi";
+import { categories } from "./Header";
 
 const Footer = () => {
   return (
@@ -35,15 +37,18 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link href="/products" className="link">
+              <Link
+                href="/products/electronics-and-gadgets"
+                className="link"
+              >
                 Products
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link href="/contact-us" className="link">
                 Contact Us
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
         {/* <div className="space-y-3 flex flex-col items-center">

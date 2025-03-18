@@ -4,6 +4,8 @@ import "keen-slider/keen-slider.min.css";
 import Header from "@/components/Header";
 import BottomTabOptions from "@/components/BottomTabOptions";
 import Footer from "@/components/Footer";
+import { Toaster } from "react-hot-toast";
+import { ReduxProvider } from "@/store/Provider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -20,12 +22,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${poppins.variable} antialiased`}>
-      <Header />
-      <BottomTabOptions />
-      <main>
-        {children}
-      </main>
-      <Footer/>
+      <ReduxProvider>
+        <Header />
+        <BottomTabOptions />
+        <Toaster/>
+        <main>
+          {children}
+        </main>
+        <Footer/>
+      </ReduxProvider>
       </body>
     </html>
   );

@@ -4,13 +4,22 @@ import EditorsBestChoice from "@/components/EditorsBestChoice";
 import { categories } from "@/components/Header";
 import ProductCardItem from "@/components/ProductCardItem";
 import RecentlyViewed from "@/components/RecentlyViewed";
-import { featuredProducts } from "@/content/constant";
 import Link from "next/link";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useParams } from "next/navigation";
 
 const page = () => {
   const [showFilter, setShowFilter] = useState(true);
+  const params = useParams();
+  const category = categories.find((item) =>
+    item.url.includes(params.category)
+  );
+
+  const products = typeof window !== "undefined" && JSON.parse(localStorage.getItem("products")) || [];
+  const filteredProducts = products.filter(
+    (item) => item.category === category.name
+  );
   return (
     <>
       <div className="header-height wrapper section-py">
@@ -37,7 +46,12 @@ const page = () => {
               <ul className="space-y-3">
                 {categories.map((item) => (
                   <li key={item.name}>
-                    <Link href={`/products`} className="link">
+                    <Link
+                      href={item.url}
+                      className={`link ${
+                        item.url === category.url && "text-primary"
+                      }`}
+                    >
                       {item.name}
                     </Link>
                   </li>
@@ -49,38 +63,44 @@ const page = () => {
               <h5 className="text-lg font-semibold">Sort By</h5>
               <ul className="space-y-3">
                 <li>
-                  <Link href={`/products`} className="link">
+                  <Link href={`/products/${params.category}`} className="link">
                     Relevance
                   </Link>
                 </li>
                 <li>
-                  <Link href={`/products`} className="link">
+                  <Link href={`/products/${params.category}`} className="link">
                     Price: Low to High
                   </Link>
                 </li>
                 <li>
-                  <Link href={`/products`} className="link">
+                  <Link href={`/products/${params.category}`} className="link">
                     Price: High to Low
                   </Link>
                 </li>
                 <li>
-                  <Link href={`/products`} className="link">
+                  <Link href={`/products/${params.category}`} className="link">
                     New Arrivals
                   </Link>
                 </li>
               </ul>
             </div>
           </div>
-          <div
-            className={`grid grid-cols-[repeat(auto-fill,minmax(15rem,1fr))] gap-8 transition-all duration-300 ease-in-out`}
-          >
-            {featuredProducts.concat(featuredProducts).map((item) => (
-              <ProductCardItem key={Math.random()} item={item} />
-            ))}
-          </div>
+          {filteredProducts.length > 0 ? (
+            <div
+              className={`grid grid-cols-[repeat(auto-fill,minmax(15rem,1fr))] gap-8 transition-all duration-300 ease-in-out`}
+            >
+              {filteredProducts.map((item) => (
+                <ProductCardItem key={Math.random()} item={item} />
+              ))}
+            </div>
+          ) : (
+            <div className="flex justify-center items-center text-center text3">
+              No products found
+            </div>
+          )}
         </motion.div>
-        <EditorsBestChoice />
-        <RecentlyViewed />
+        {/* <EditorsBestChoice />
+        <RecentlyViewed /> */}
       </div>
       <BrandLogos />
     </>

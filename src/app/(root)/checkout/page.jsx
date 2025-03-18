@@ -165,7 +165,7 @@ const page = () => {
                   {/* <div className="space-y-6 pt-5">
                     <button className="primary-btn w-full">Place Order</button>
                     <div className="flex justify-center">
-                      <Link href="/products" className="link">
+                      <Link href="/products/electronics-and-gadgets" className="link">
                         Back to Cart
                       </Link>
                     </div>

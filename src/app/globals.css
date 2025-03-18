@@ -22,19 +22,19 @@ body {
     @apply max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8;
   }
   .btn {
-    @apply p-3 rounded-lg flex items-center justify-center gap-2 transition-all duration-300 hover:-translate-y-1 shadow-xl text-sm;
+    @apply p-3 rounded-lg flex items-center justify-center gap-2 transition-all duration-300 hover:-translate-y-1 shadow-xl text-sm disabled:cursor-progress disabled:hover:-translate-y-0 disabled:hover:shadow-none;
   }
   .primary-btn {
-    @apply p-3 rounded-lg flex items-center justify-center gap-2 transition-all duration-300 hover:-translate-y-1 shadow-xl bg-primary text-white hover:shadow-primary/40 text-sm;
+    @apply p-3 rounded-lg flex items-center justify-center gap-2 transition-all duration-300 hover:-translate-y-1 shadow-xl bg-primary text-white hover:shadow-primary/40 text-sm disabled:cursor-progress disabled:hover:-translate-y-0 disabled:hover:shadow-none;
   }
   .link {
     @apply hover:text-primary transition-all duration-300;
   }
   .text1 {
-    @apply text-[2rem] sm:text-[3rem] md:text-[4rem] leading-[1];
+    @apply text-[2rem] sm:text-[3rem] md:text-[4rem] leading-tight;
   }
   .text2 {
-    @apply text-[1.75rem] sm:text-[2.5rem] md:text-[3rem] leading-[1];
+    @apply text-[1.75rem] sm:text-[2.5rem] md:text-[3rem] leading-tight;
   }
   .text3 {
     @apply text-[1.25rem] sm:text-[1.75rem] md:text-[2rem] leading-tight;
@@ -43,8 +43,21 @@ body {
     @apply py-7 md:py-16;
   }
   .header-height {
+    /* @apply mt-0 lg:mt-[8rem]; */
     @apply mt-0 lg:mt-[12.1rem];
-    /* @apply mt-[7rem] lg:mt-[12rem]; */
+  }
+}
+
+/* button loading spinner animation */
+.spin {
+  animation: spinIcon 1s infinite linear;
+}
+@keyframes spinIcon {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 

@@ -1,16 +1,17 @@
 "use client";
 
 import Heading from "@/components/Heading";
-import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import { motion } from "framer-motion";
 import ProductCardItem from "../ProductCardItem";
-import { featuredProducts } from "@/content/constant";
 
 const Flashsale = () => {
   const [isClient, setIsClient] = useState(false);
+  const products =
+    (typeof window !== "undefined" &&
+      JSON.parse(localStorage.getItem("products"))) ||
+    [];
 
   useEffect(() => {
     setIsClient(true);
@@ -71,7 +72,9 @@ const Flashsale = () => {
               Up to 30% Off!
             </h5>
             <div className="space-y-3">
-              <p className="text-center text-black font-semibold">Sale Ends In :</p>
+              <p className="text-center text-black font-semibold">
+                Sale Ends In :
+              </p>
               <div className="grid grid-cols-[1fr,auto,1fr,auto,1fr] items-center gap-2">
                 {timeLeft.days > 0 && (
                   <div className="flex items-center gap-2">
@@ -148,40 +151,42 @@ const Flashsale = () => {
             />
           )}
         </div>
-        {featuredProducts.slice(0, 3).map((item) => (
-          <ProductCardItem key={item.id} item={item} />
-          // <div
-          //   key={item.title}
-          //   className="rounded-2xl overflow-hidden border transition-all duration-300 cursor-pointer hover:bg-primary group"
-          // >
-          //   <Link
-          //     href="/products/1"
-          //     className="aspect-[3/3.2] w-full overflow-hidden"
-          //   >
-          //     <Image
-          //       src={item.image}
-          //       alt={item.title}
-          //       width={400}
-          //       height={450}
-          //       className="object-contain w-full bg-white aspect-square group-hover:scale-110 transition-all duration-300"
-          //     />
-          //   </Link>
-          //   <div className="p-5 flex flex-col items-center space-y-2">
-          //     <p className="text-lg text-center">{item.title}</p>
-          //     <p>
-          //       <del>₹{item.price}</del> -{" "}
-          //       <span className="text-primary group-hover:text-black">
-          //         ₹{item.offerPrice}
-          //       </span>
-          //     </p>
-          //     <div className="w-full pt-2">
-          //       <div className="w-full flex justify-end">
-          //         <p>Sold: {item.sold}</p>
-          //       </div>
-          //     </div>
-          //   </div>
-          // </div>
-        ))}
+        {products.length > 0 &&
+          isClient &&
+          products.map((item) => (
+            <ProductCardItem key={item._id} item={item} />
+            // <div
+            //   key={item.title}
+            //   className="rounded-2xl overflow-hidden border transition-all duration-300 cursor-pointer hover:bg-primary group"
+            // >
+            //   <Link
+            //     href="/product/1"
+            //     className="aspect-[3/3.2] w-full overflow-hidden"
+            //   >
+            //     <Image
+            //       src={item.image}
+            //       alt={item.title}
+            //       width={400}
+            //       height={450}
+            //       className="object-contain w-full bg-white aspect-square group-hover:scale-110 transition-all duration-300"
+            //     />
+            //   </Link>
+            //   <div className="p-5 flex flex-col items-center space-y-2">
+            //     <p className="text-lg text-center">{item.title}</p>
+            //     <p>
+            //       <del>₹{item.price}</del> -{" "}
+            //       <span className="text-primary group-hover:text-black">
+            //         ₹{item.offerPrice}
+            //       </span>
+            //     </p>
+            //     <div className="w-full pt-2">
+            //       <div className="w-full flex justify-end">
+            //         <p>Sold: {item.sold}</p>
+            //       </div>
+            //     </div>
+            //   </div>
+            // </div>
+          ))}
       </motion.div>
     </section>
   );

@@ -14,10 +14,7 @@ const schema = z.object({
   email: z.string().email("Invalid email address"),
   phoneNumber: z
     .string()
-    .regex(
-      /^\+?[\d\s\-()]{6,14}\d$/,
-      "Please enter a valid phone number"
-    ),
+    .regex(/^\+?[\d\s\-()]{6,14}\d$/, "Please enter a valid phone number"),
   postalCode: z
     .string()
     .min(6, "Pincode must be 6 digits")
@@ -36,7 +33,7 @@ const schema = z.object({
 });
 
 const Page = () => {
-  const [states, setStates] = useState(State.getStatesOfCountry("IN"));
+  const [states, setStates] = useState(State.getStatesOfCountry("IN")) || [];
   const [editable, setEditable] = useState(false);
 
   const {
@@ -73,8 +70,7 @@ const Page = () => {
           <Link href="/orders" className="text-blue-400">
             Recent Orders
           </Link>
-          ,
-          and change your{" "}
+          , and change your{" "}
           <Link href="/change-password" className="text-blue-400">
             Password
           </Link>{" "}

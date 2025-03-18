@@ -9,13 +9,19 @@ import Image from "next/image";
 import { FaSearch, FaShoppingCart } from "react-icons/fa";
 import { IoPersonCircle } from "react-icons/io5";
 import { BiCaretDown } from "react-icons/bi";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [isSticky, setIsSticky] = useState(false);
+  const [isClient, setIsClient] = useState(false); // Track client-side rendering
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+
+  useEffect(() => {
+    setIsClient(true); // Set to true after hydration
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Set sticky state based on scroll position
       if (window.scrollY > 100) {
         setIsSticky(true);
       } else {
@@ -23,10 +29,7 @@ const Header = () => {
       }
     };
 
-    // Add scroll event listener
     window.addEventListener("scroll", handleScroll);
-
-    // Cleanup the event listener on component unmount
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -95,25 +98,41 @@ const Header = () => {
           </Link>
 
           {/* Account (Visible on lg and above) */}
-          <Link
-            href="/profile"
-            className="lg:!flex !hidden min-w-[10rem] primary-btn uppercase !h-fit"
-          >
-            <IoPersonCircle size={22} />
-            My Account
-          </Link>
+          {isClient && // Only render on the client side
+            (isLoggedIn ? (
+              <Link
+                href="/profile"
+                className="lg:!flex !hidden min-w-[10rem] primary-btn uppercase !h-fit"
+              >
+                <IoPersonCircle size={22} />
+                My Account
+              </Link>
+            ) : (
+              <Link
+                href="/signin"
+                className="lg:!flex !hidden min-w-[10rem] primary-btn uppercase !h-fit"
+              >
+                <IoPersonCircle size={22} />
+                Sign In
+              </Link>
+            ))}
 
           {/* Account Icon (Visible on lg and below) */}
-          <Link href="/profile" className="lg:hidden">
-            <IoPersonCircle size={30} />
-          </Link>
+          {isClient && // Only render on the client side
+            (isLoggedIn ? (
+              <Link href="/profile" className="lg:hidden">
+                <IoPersonCircle size={30} />
+              </Link>
+            ) : (
+              <Link href="/signin" className="lg:hidden">
+                <IoPersonCircle size={30} />
+              </Link>
+            ))}
         </div>
       </div>
 
       {/* Categories Section (Visible on lg and above) */}
-      {/* <div className={`${isSticky ? "hidden" : "block"}`}> */}
       <div className="wrapper lg:py-4 hidden lg:flex gap-10 xl:gap-14">
-        {/* All Categories Dropdown */}
         <div className="relative group hidden lg:block">
           <button className="flex items-center gap-2 peer">
             All Categories
@@ -135,14 +154,13 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Other Categories */}
+        
         {categories.map((category) => (
           <Link href={category.url} key={category.name} className="link">
             {category.name}
           </Link>
         ))}
       </div>
-      {/* </div> */}
 
       {/* Sticky Search Input (Visible on lg and below) */}
       <div
@@ -171,23 +189,23 @@ export default Header;
 
 export const categories = [
   {
-    name: "Accessories",
-    url: "/products",
+    name: "Electronics & Gadgets",
+    url: "/products/electronics-and-gadgets",
   },
   {
     name: "Smartphones",
-    url: "/products",
+    url: "/products/smartphones",
   },
   {
     name: "Laptops",
-    url: "/products",
+    url: "/products/laptops",
   },
   {
     name: "Gaming Equipments",
-    url: "/products",
+    url: "/products/gaming-equipments",
   },
   {
     name: "TV & Monitors",
-    url: "/products",
+    url: "/products/tv-and-monitors",
   },
 ];

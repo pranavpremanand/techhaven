@@ -10,6 +10,8 @@ import { RiBox3Fill } from "react-icons/ri";
 import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
 import AddToCartSection from "@/components/productDetails/AddToCartSection";
 import { motion } from "framer-motion";
+import { createUrlParam } from "@/utils/helper";
+import { categories } from "@/components/Header";
 
 const page = () => {
   return (
@@ -28,7 +30,7 @@ const page = () => {
               className="w-full space-y-7"
             >
               <div className="flex items-center gap-2 text-gray-300">
-                <Link href="/products">Products</Link>
+                <Link href="/products/electronics-and-gadgets">Products</Link>
                 <RxCaretRight size={20} />
                 <p className="text-primary">Product Name</p>
               </div>

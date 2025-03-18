@@ -13,16 +13,16 @@ const ProductCardItem2 = ({ item }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      key={item.id}
+      key={item._id}
       className="grid md:grid-cols-2 gap-2 sm:gap-5 mb-6"
     >
       <Link
-        href="/products/1"
+        href="/product/1"
         className="group hover:brightness-75 transition-all duration-300 aspect-square md:h-full w-full rounded-2xl bg-white overflow-hidden flex items-center justify-center"
       >
         <Image
           src={item.image}
-          alt={item.title}
+          alt={item.productName}
           width={400}
           height={400}
           className="object-contain aspect-square"
@@ -30,8 +30,8 @@ const ProductCardItem2 = ({ item }) => {
       </Link>
       <div className="space-y-2 flex flex-col justify-between py-1">
         <div className="flex justify-between gap-2">
-          <Link href="/products/1" className="text-lg link">
-            {item.title}
+          <Link href="/product/1" className="text-lg link">
+            {item.productName}
           </Link>
           {/* <button className="h-fit min-w-[1.5rem]">
             <IoIosHeart

@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { categories } from "../Header";
 import ReactPlayer from "react-player";
+import { createUrlParam } from "@/utils/helper";
 
 const Banner = () => {
   const [currentSlide, setCurrentSlide] = useState(0); // Track the current slide index
@@ -111,7 +112,7 @@ const Banner = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
-                    className="max-w-lg space-y-2 py-8"
+                    className="max-w-lg space-y-4 py-8"
                   >
                     <p className="text-lg text-primary font-bold">
                       HOT PRODUCTS
@@ -121,10 +122,10 @@ const Banner = () => {
                       Your One-Stop Shop for the Latest Electronics,
                       Accessories, and Gadgets
                     </p>
-                    <p className="">Start from</p>
-                    <h2 className="text2 font-medium pb-3">₹2990</h2>
+                    {/* <p className="">Start from</p>
+                    <h2 className="text2 font-medium pb-3">₹2990</h2> */}
                     <Link
-                      href="/products"
+                      href="/products/electronics-and-gadgets"
                       className="w-[12rem] primary-btn uppercase"
                     >
                       Shop Now
@@ -238,7 +239,7 @@ const CategoriesSlider = () => {
         return (
           <Link
             key={category.name}
-            href={category.url}
+            href={`/products/${category.url}`}
             // keen-slider__slide
             className={`${
               isLastItemEven && "col-span-2 w-1/2 mx-auto"

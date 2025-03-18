@@ -7,39 +7,79 @@ import { FaMinus, FaPlus } from "react-icons/fa";
 import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { motion } from "framer-motion";
+import { productImages } from "@/content/constant";
+import { addToCart } from "@/utils/api";
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { addItemToCart } from "@/store/features/cartSlice";
 
 const CartItem = ({
   item,
-  setCartItems,
   cartItems,
-  setSelectedItems,
-  selectedItems,
 }) => {
-  const [quantity, setQuantity] = useState(item.cartQuantity);
+  const [quantity, setQuantity] = useState(item.quantity);
+  const dispatch = useDispatch();
+  const [subtotal, setSubtotal] = useState(item.subtotal);
 
   // decrement quantity
-  const decrementQuantity = () => {
+  const decrementQuantity = async () => {
     if (quantity > 1) {
-      setQuantity(quantity - 1);
-      const updatedCartItems = cartItems.map((cartItem) => {
-        if (cartItem.id === item.id) {
-          return { ...cartItem, cartQuantity: quantity - 1 };
+      try {
+        const updatedQty = quantity - 1;
+        const res = await addToCart({
+          productId: item.productId._id,
+          quantity: updatedQty,
+        });
+        if (res.data.cart) {
+          setQuantity(updatedQty);
+          const productAmt =
+            item.productId.price * (1 - item.productId.offerPercentage / 100);
+          const subTotal = productAmt * updatedQty;
+          setSubtotal(subTotal);
+          dispatch(
+            addItemToCart({
+              ...item,
+              quantity: updatedQty,
+              subtotal: subTotal,
+            })
+          );
+        } else {
+          toast.error(res.data.message);
         }
-        return cartItem;
-      })
+      } catch (err) {
+        toast.error("Something went wrong");
+      }
     }
   };
 
   // increment quantity
-  const incrementQuantity = () => {
-    setQuantity(quantity + 1);
-    const updatedCartItems = cartItems.map((cartItem) => {
-      if (cartItem.id === item.id) {
-        return { ...cartItem, cartQuantity: quantity + 1 };
+  const incrementQuantity = async () => {
+    try {
+      const updatedQty = quantity + 1;
+      const res = await addToCart({
+        productId: item.productId._id,
+        quantity: updatedQty,
+      });
+      if (res.data.cart) {
+        setQuantity(updatedQty);
+        const productAmt =
+          item.productId.price * (1 - item.productId.offerPercentage / 100);
+
+        const subTotal = productAmt * updatedQty;
+        setSubtotal(subTotal);
+        dispatch(
+          addItemToCart({
+            ...item,
+            quantity: updatedQty,
+            total: subTotal,
+          })
+        );
+      } else {
+        toast.error(res.data.message);
       }
-      return cartItem;
-    })
-    setCartItems(updatedCartItems);
+    } catch (err) {
+      toast.error("Something went wrong");
+    }
   };
 
   // remove item
@@ -47,42 +87,33 @@ const CartItem = ({
     const updatedCartItems = cartItems.filter(
       (cartItem) => cartItem.id !== item.id
     );
-    setCartItems(updatedCartItems);
-  };
-
-  // select item
-  const handleSelectItem = () => {
-    const updatedSelectedItems = selectedItems.includes(item)
-      ? selectedItems.filter((selectedItem) => selectedItem.id !== item.id)
-      : [...selectedItems, item];
-    setSelectedItems(updatedSelectedItems);
+    // setCartItems(updatedCartItems);
   };
 
   return (
     <motion.div
-    initial={{ opacity: 0, y: 50 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5 }} className="flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-4 bg-white text-black p-5 rounded-xl shadow-sm">
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className="flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-4 bg-white text-black p-5 rounded-xl shadow-sm"
+    >
       <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
-        <input
-          checked={selectedItems.includes(item)}
-          onChange={handleSelectItem}
-          type="checkbox"
-          className="accent-primary w-4 h-4 cursor-pointer self-start sm:self-auto"
-        />
-        <Link href={`/products/${item.id}`} className="flex-shrink-0">
+        <Link
+          href={`/products/${item.productId._id}`}
+          className="flex-shrink-0"
+        >
           <Image
-            src={item.image}
-            alt={item.title}
+            src={productImages.mainImage}
+            alt={item.productId.productName}
             width={80}
             height={80}
             className="aspect-square lg:w-full lg:h-full h-[10rem] w-[10rem] object-cover rounded-xl"
           />
         </Link>
-        <div className="flex flex-col justify-between gap-2">
-          <h5 className="text-lg font-medium">{item.title}</h5>
-          <h4 className="text-xl font-semibold text-primary">₹{item.price}</h4>
+        <div className="flex flex-col text-center sm:text-start justify-between gap-2">
+          <h5 className="text-lg font-medium">{item.productId.productName}</h5>
+          <h4 className="text-xl font-semibold text-primary">₹{subtotal}</h4>
         </div>
       </div>
       <div className="flex items-center gap-4 w-full md:w-auto justify-center sm:justify-end">

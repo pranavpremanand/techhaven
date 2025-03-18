@@ -1,53 +1,55 @@
 "use client";
 
 import CartItem from "@/components/cart/CartItem";
-import RecentlyViewed from "@/components/RecentlyViewed";
-import { featuredProducts } from "@/content/constant";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useAuth } from "@/hooks/useAuth";
+import toast from "react-hot-toast";
+import { addToCart, getCartData } from "@/utils/api";
+import { useDispatch, useSelector } from "react-redux";
+import { addItemToCart, setCartItems } from "@/store/features/cartSlice";
 
 const page = () => {
-  const [selectAll, setSelectAll] = useState(false);
-  const [cartItems, setCartItems] = useState(featuredProducts.slice(0, 4));
-  const [selectedItems, setSelectedItems] = useState([]);
-  const [subtotal, setSubtotal] = useState(0);
-  const shippingCharge = 50;
+  useAuth();
+  const shippingCharge = 200;
   const [total, setTotal] = useState(0);
+  const [subtotal, setSubtotal] = useState(0);
 
-  //   update total summary
+  const dispatch = useDispatch();
+  const { cartItems } = useSelector((state) => state.cart);
+
+  // Update total summary
   useEffect(() => {
     calculateTotal();
   }, [cartItems]);
 
   const calculateTotal = () => {
-    const total = cartItems.reduce(
-      (acc, item) => acc + item.price * item.cartQuantity,
-      0
-    );
-    setSubtotal(total);
-    setTotal(total + shippingCharge);
+    const subtotal = cartItems.reduce((acc, item) => {
+      const productAmt =
+        item.productId.price * (1 - item.productId.offerPercentage / 100);
+      return acc + productAmt * item.quantity;
+    }, 0);
+    setSubtotal(subtotal);
+    setTotal(subtotal + shippingCharge);
   };
 
-  const handleSelectAll = () => {
-    if (selectAll) {
-      setSelectAll(false);
-      setSelectedItems([]);
-    } else {
-      setSelectAll(true);
-      setSelectedItems(cartItems);
+  // Get cart data
+  const getCartList = async () => {
+    try {
+      const res = await getCartData();
+      if (res.data.cart) {
+        dispatch(setCartItems(res.data.cart.items));
+      }
+    } catch (err) {
+      toast.error("Something went wrong");
+      console.log(err);
     }
   };
 
-  //   remove selected items
-  const handleRemoveSelectedItems = () => {
-    const updatedCartItems = cartItems.filter(
-      (item) => !selectedItems.includes(item)
-    );
-    setCartItems(updatedCartItems);
-    setSelectedItems([]);
-    setSelectAll(false);
-  };
+  useEffect(() => {
+    getCartList();
+  }, []);
 
   return (
     <>
@@ -55,49 +57,18 @@ const page = () => {
         <div className="header-height section-py">
           <div className="wrapper grid grid-cols-1 lg:grid-cols-[auto,20rem] gap-8">
             <section className="space-y-5">
-              <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className="bg-[#504A4A] rounded-xl p-5 flex justify-between gap-7"
-              >
-                <div
-                  onClick={handleSelectAll}
-                  className="flex items-center gap-3 cursor-pointer link"
-                >
-                  <input
-                    type="checkbox"
-                    name=""
-                    className="accent-white w-4 h-4 cursor-pointer"
-                    id=""
-                    checked={selectAll}
-                    onChange={handleSelectAll}
-                  />
-                  <span>{selectAll ? "Deselect All" : "Select All"}</span>
-                </div>
-                <button
-                  onClick={handleRemoveSelectedItems}
-                  className="uppercase tracking-wide link"
-                >
-                  Remove
-                </button>
-              </motion.div>
               <div className="space-y-3">
                 {cartItems.map((item) => (
                   <CartItem
-                    key={item.id}
+                    key={item._id}
                     item={item}
-                    setCartItems={setCartItems}
                     cartItems={cartItems}
-                    setSelectedItems={setSelectedItems}
-                    selectedItems={selectedItems}
                   />
                 ))}
               </div>
             </section>
             <section className="space-y-5">
-              {/* summary */}
+              {/* Summary */}
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -126,7 +97,10 @@ const page = () => {
                     Checkout
                   </Link>
                   <div className="flex justify-center">
-                    <Link href="/products" className="link">
+                    <Link
+                      href="/products/electronics-and-gadgets"
+                      className="link"
+                    >
                       Continue Shopping
                     </Link>
                   </div>
@@ -135,7 +109,7 @@ const page = () => {
             </section>
           </div>
         </div>
-        <RecentlyViewed />
+        {/* <RecentlyViewed /> */}
       </div>
     </>
   );

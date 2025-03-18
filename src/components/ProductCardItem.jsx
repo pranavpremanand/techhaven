@@ -4,8 +4,23 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
+import { addToCart } from "@/utils/api";
+import toast from "react-hot-toast";
+import { productImages } from "@/content/constant";
 
 const ProductCardItem = ({ item }) => {
+  const addItemToCart = async () => {
+    try {
+      const res = await addToCart({ productId: item._id, quantity: 1 });
+      if (res.data.cart) {
+        toast.success("Item added to cart");
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (err) {
+      toast.error("Something went wrong");
+    }
+  };
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -22,14 +37,14 @@ const ProductCardItem = ({ item }) => {
         <IoIosHeartEmpty size={25} className="text-red-600" />
       </button> */}
       <Link
-        href="/products/1"
+        href="/product/1"
         className="aspect-square flex justify-center items-center relative"
       >
         <Image
-          src={item.image}
+          src={productImages.mainImage}
           objectFit="cover"
           className="group-hover:scale-100 scale-90 group-hover:translate-y-3 transition-all duration-300 z-[1] relative"
-          alt={item.title}
+          alt={item.productName}
           width={350}
           height={350}
         />
@@ -37,21 +52,23 @@ const ProductCardItem = ({ item }) => {
       </Link>
       <div className="p-5 flex flex-col items-center space-y-2">
         <Link
-          href="/products/1"
+          href={`/product/${item._id}`}
           className="text-lg text-center link hover:!text-black"
         >
-          {item.title}
+          {item.productName}
         </Link>
         <p className="pb-3">
-          <del className="text-gray-300">{item.price}</del> -{" "}
-          <span className="text-white">{item.offerPrice}</span>
+          {/* <del className="text-gray-300">₹{item.price}</del> -{" "} */}
+          <span className="text-white">
+            ₹{item.price * (1 - item.offerPercentage / 100)}
+          </span>
         </p>
-        <Link
-          href="/products/1"
+        <button
+          onClick={addItemToCart}
           className="uppercase underline underline-offset-4 text-white hover:text-black transition-all duration-300 tracking-wide"
         >
           Add to cart
-        </Link>
+        </button>
       </div>
     </motion.div>
   );

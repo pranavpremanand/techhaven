@@ -9,6 +9,7 @@ import FeaturedProductsSection from "@/components/home/FeaturedProductsSection";
 import EditorsBestChoice from "@/components/EditorsBestChoice";
 import BrandLogos from "@/components/BrandLogos";
 import { motion } from "framer-motion";
+import { getAllProducts } from "@/utils/api";
 
 export default function Home() {
   const [isClient, setIsClient] = useState(false);
@@ -16,8 +17,35 @@ export default function Home() {
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  const getProducts = async () => {
+    try {
+      const res = await getAllProducts();
+      // const product1 = {
+      //   mainImage: "/images/featured-products/1.png",
+      //   images: [
+      //     "/images/product-details/1.webp",
+      //     "/images/product-details/2.webp",
+      //     "/images/product-details/3.webp",
+      //     "/images/product-details/4.webp",
+      //   ],
+      //   ...res.data[0],
+      //   category: "Electronics & Gadgets",
+      // };
+      // const products = [product1];
+      if (res.data.length > 0) {
+        localStorage.setItem("products", JSON.stringify(res.data));
+      }
+    } catch (err) {
+      toast.error("Something went wrong");
+    }
+  };
+
+  useEffect(() => {
+    getProducts();
+  }, []);
   return (
-    <>
+    <div className="">
       <Banner />
       <Flashsale />
       <section className="section-py">
@@ -64,24 +92,30 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="space-y-5"
           >
-            <h3 className="text2 font-semibold">Portable Pocket Projector</h3>
+            <h3 className="text2 font-semibold">Long-Range Walkie-Talkie</h3>
             <p>
-              New Release Wireless Headphone from SoundPro Sound Technology.
-              Using Bluetooth 5.0, Noice Canceling and APTX Technology to make a
-              good experience when listening to music.
+              Stay connected with the latest Walkie-Talkie from ComTalk.
+              Featuring a <b>10-mile range</b> , <b>crystal-clear sound</b> ,
+              and
+              <b> noise reduction</b> for seamless communication in any
+              environment.
             </p>
             <h4 className="text3">
-              Start From <br /> $15,99
+              Start From <br /> ₹1,800
             </h4>
-            <Link href="/" className="primary-btn w-[12rem]">
+
+            <Link
+              href="/products/electronics-and-gadgets"
+              className="primary-btn w-[12rem]"
+            >
               Shop Now
             </Link>
           </motion.div>
         </div>
       </section>
-      <FeaturedProductsSection />
-      <EditorsBestChoice />
+      {/* <FeaturedProductsSection /> */}
+      {/* <EditorsBestChoice /> */}
       <BrandLogos />
-    </>
+    </div>
   );
 }

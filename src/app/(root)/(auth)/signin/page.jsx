@@ -1,29 +1,72 @@
-// src/app/(root)/profile/change-password/page.jsx
-"use client"; // This is a client component
+"use client";
 
-import { useFormState } from "react-dom";
-import { handleSubmit } from "@/actions/auth";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { IoIosArrowRoundForward } from "react-icons/io";
+import { useRouter } from "next/navigation";
+import { doSignin } from "@/utils/api";
+import { PiSpinnerGapLight } from "react-icons/pi";
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { setLoginStatus } from "@/store/features/userSlice";
+import Cookies from "js-cookie";
 
-export default function Page() {
-  const [state, formAction] = useFormState(handleSubmit, null);
+// Define the strict validation schema using Zod
+const schema = z.object({
+  email: z.string().min(1, "Email is required").email("Invalid email address"),
+  password: z
+    .string()
+    .min(1, "Password is required")
+    .regex(
+      /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,16}$/,
+      "Password must contain at least one letter and one number, and no special characters"
+    ),
+});
+
+const page = () => {
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    resolver: zodResolver(schema),
+  });
+
+  const onSubmit = async (data) => {
+    try {
+      const res = await doSignin(data);
+      if (res.data.user) {
+        dispatch(setLoginStatus(true));
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+        Cookies.set("token", res.data.token, { expires: 7 });
+        router.push("/");
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Something went wrong");
+    }
+  };
 
   return (
     <div className="w-full p-6">
-      <form action={formAction} className="space-y-4 text-black">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 text-black">
         {/* Email Field */}
         <div>
           <label className="block text-sm font-medium">Email Address</label>
           <input
             type="email"
-            name="email"
+            {...register("email")}
             className="mt-1 block w-full p-3 border border-gray-300 rounded-sm shadow-sm outline-none"
             placeholder="Enter your email"
           />
-          {state?.errors?.fieldErrors?.email && (
-            <small className="text-red-600">
-              {state.errors.fieldErrors.email}
-            </small>
+          {errors.email && (
+            <small className="text-red-600">{errors.email.message}</small>
           )}
         </div>
 
@@ -32,14 +75,12 @@ export default function Page() {
           <label className="block text-sm font-medium">Password</label>
           <input
             type="password"
-            name="password"
+            {...register("password")}
             className="mt-1 block w-full p-3 border border-gray-300 rounded-sm shadow-sm outline-none"
             placeholder="Enter your password"
           />
-          {state?.errors?.fieldErrors?.password && (
-            <small className="text-red-600">
-              {state.errors.fieldErrors.password}
-            </small>
+          {errors.password && (
+            <small className="text-red-600">{errors.password.message}</small>
           )}
           {/* <div className="text-right mt-2">
             <a href="#" className="text-sm text-blue-600 hover:text-primary">
@@ -53,8 +94,15 @@ export default function Page() {
           <button
             type="submit"
             className="w-full primary-btn !rounded-[.125rem]"
+            disabled={isSubmitting}
           >
-            SIGN IN <IoIosArrowRoundForward size={20} />
+            {isSubmitting ? (
+              <PiSpinnerGapLight size={20} className="spin" />
+            ) : (
+              <>
+                SIGN IN <IoIosArrowRoundForward size={20} />
+              </>
+            )}
           </button>
         </div>
       </form>
@@ -87,4 +135,6 @@ export default function Page() {
       </div> */}
     </div>
   );
-}
+};
+
+export default page;
