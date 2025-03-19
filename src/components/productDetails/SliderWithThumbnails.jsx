@@ -5,13 +5,7 @@ import { useKeenSlider } from "keen-slider/react";
 import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi";
 import { motion } from "framer-motion";
 import ZoomImage from "./ZoomImage";
-
-const images = [
-  { src: "/images/product-details/1.webp", alt: "1" },
-  { src: "/images/product-details/2.webp", alt: "2" },
-  { src: "/images/product-details/3.webp", alt: "3" },
-  { src: "/images/product-details/4.webp", alt: "4" },
-];
+import { productImages } from "@/content/constant";
 
 const SliderWithThumbnails = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -63,7 +57,7 @@ const SliderWithThumbnails = () => {
     >
       {/* Main Slider */}
       <div ref={sliderRef} className="keen-slider w-full">
-        {images.map((image, index) => (
+        {productImages.images.map((image, index) => (
           <div
             key={index}
             className="keen-slider__slide rounded-xl overflow-visible sm:aspect-video lg:aspect-auto flex justify-center bg-primary/10"
@@ -82,7 +76,7 @@ const SliderWithThumbnails = () => {
           <PiCaretLeftBold size={20} />
         </button>
         <div ref={thumbnailRef} className="keen-slider w-full">
-          {images.map((image, index) => (
+          {productImages.images.map((image, index) => (
             <div
               key={index}
               className={`keen-slider__slide aspect-square overflow-hidden rounded-lg cursor-pointer ${
@@ -91,8 +85,8 @@ const SliderWithThumbnails = () => {
               onClick={() => slider.current?.moveToIdx(index)}
             >
               <img
-                src={image.src}
-                alt={image.alt}
+                src={image}
+                alt={image}
                 className="object-contain aspect-square"
               />
             </div>

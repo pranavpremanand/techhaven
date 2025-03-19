@@ -1,6 +1,6 @@
 "use client";
 import { BsBookmarkHeartFill } from "react-icons/bs";
-import { FaBoxOpen } from "react-icons/fa";
+import { FaAddressCard, FaBoxOpen } from "react-icons/fa";
 import { IoHomeOutline } from "react-icons/io5";
 import { MdDashboard, MdOutlinePassword } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
@@ -29,10 +29,17 @@ const dashboardOptions = [
     id: 3,
     label: "Saved Items",
     icon: <BsBookmarkHeartFill size={20} />,
-    path: "/profile/wishlist",
+    path: "/profile/#",
+    // path: "/profile/wishlist",
   },
   {
     id: 4,
+    label: "Manage Addresses",
+    icon: <FaAddressCard size={20} />,
+    path: "/profile/manage-addresses",
+  },
+  {
+    id: 5,
     label: "Change Password",
     icon: <MdOutlinePassword size={20} />,
     path: "/profile/change-password",

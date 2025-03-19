@@ -70,7 +70,7 @@ const ZoomImage = ({ image }) => {
     >
       {/* Main Image */}
       <img
-        src={image.src}
+        src={image}
         alt="Zoomable Image"
         className="w-full h-full object-contain object-[0_0]"
       />
@@ -79,7 +79,7 @@ const ZoomImage = ({ image }) => {
       <div
         className="absolute inset-0 w-full h-full bg-black bg-cover bg-no-repeat"
         style={{
-          backgroundImage: `var(--url, url('${image.src}'))`,
+          backgroundImage: `var(--url, url('${image}'))`,
           backgroundSize: zoomLevel === 2 ? "100%" : "150%",
           backgroundPosition:
             zoomLevel === 2 ? "center" : `var(--zoom-x) var(--zoom-y)`,

@@ -5,25 +5,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
-
-// Define the validation schema using Zod
-const schema = z
-  .object({
-    currentPassword: z.string().min(1, "Current password is required"),
-    newPassword: z
-      .string()
-      .min(8, "Password must be at least 8 characters")
-      .max(16, "Password must be at most 16 characters")
-      .regex(
-        /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,16}$/,
-        "Password must contain at least one letter and one number, and no special characters"
-      ),
-    confirmPassword: z.string().min(1, "Confirm password is required"),
-  })
-  .refine((data) => data.newPassword === data.confirmPassword, {
-    message: "Passwords do not match",
-    path: ["confirmPassword"], // Attach error to confirmPassword field
-  });
+import { changePassword } from "@/utils/api";
+import { changePasswordSchema } from "@/utils/schemas";
+import toast from "react-hot-toast";
 
 const page = () => {
   const [showNewPassword, setShowNewPassword] = useState(false); // State for new password visibility
@@ -32,13 +16,24 @@ const page = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(changePasswordSchema),
   });
 
-  const onSubmit = (data) => {
-    console.log(data); // Handle form submission
+  const onSubmit = async (data) => {
+    try {
+      const res = await changePassword(data);
+      if (res.data.success) {
+        toast.error(res.data.message);
+      } else {
+        toast.success("Password changed successfully");
+        reset();
+      }
+    } catch (err) {
+      toast.error("Failed to change password");
+    }
   };
 
   return (
@@ -51,13 +46,11 @@ const page = () => {
         <label className="text-sm">Current Password</label>
         <input
           type="password"
-          {...register("currentPassword")}
+          {...register("oldPassword")}
           className="p-2 rounded-md outline-none border-2 w-full bg-white text-black"
         />
-        {errors.currentPassword && (
-          <small className="text-red-600">
-            {errors.currentPassword.message}
-          </small>
+        {errors.oldPassword && (
+          <small className="text-red-600">{errors.oldPassword.message}</small>
         )}
       </div>
 
@@ -70,13 +63,12 @@ const page = () => {
             {...register("newPassword")}
             className="outline-none w-full bg-transparent"
           />
-          <button
-            type="button"
+          <div
             onClick={() => setShowNewPassword(!showNewPassword)}
-            className="focus:outline-none"
+            className="focus:outline-none cursor-pointer"
           >
             {showNewPassword ? <IoMdEyeOff size={23} /> : <IoMdEye size={23} />}
-          </button>
+          </div>
         </div>
         {errors.newPassword && (
           <small className="text-red-600">{errors.newPassword.message}</small>
@@ -92,17 +84,16 @@ const page = () => {
             {...register("confirmPassword")}
             className="outline-none w-full bg-transparent"
           />
-          <button
-            type="button"
+          <div
             onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-            className="focus:outline-none"
+            className="focus:outline-none cursor-pointer"
           >
             {showConfirmPassword ? (
               <IoMdEyeOff size={23} />
             ) : (
               <IoMdEye size={23} />
             )}
-          </button>
+          </div>
         </div>
         {errors.confirmPassword && (
           <small className="text-red-600">

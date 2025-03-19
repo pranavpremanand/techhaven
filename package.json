@@ -19,6 +19,7 @@
     "keen-slider": "^6.8.6",
     "leaflet": "^1.9.4",
     "next": "15.2.0",
+    "razorpay": "^2.9.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.2",

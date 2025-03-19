@@ -28,7 +28,8 @@ const options = [
     id: 4,
     label: "Saved",
     icon: <BsBookmarkHeartFill size={20} />,
-    path: "/profile/wishlist",
+    path: "/profile/",
+    // path: "/profile/wishlist",
   },
 ];
 

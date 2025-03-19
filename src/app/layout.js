@@ -6,6 +6,7 @@ import BottomTabOptions from "@/components/BottomTabOptions";
 import Footer from "@/components/Footer";
 import { Toaster } from "react-hot-toast";
 import { ReduxProvider } from "@/store/Provider";
+import SpinnerContextProvider from "@/components/SpinnerContext";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -23,6 +24,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${poppins.variable} antialiased`}>
       <ReduxProvider>
+      <SpinnerContextProvider>
         <Header />
         <BottomTabOptions />
         <Toaster/>
@@ -30,6 +32,7 @@ export default function RootLayout({ children }) {
           {children}
         </main>
         <Footer/>
+      </SpinnerContextProvider>
       </ReduxProvider>
       </body>
     </html>

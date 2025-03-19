@@ -3,8 +3,10 @@
 import { useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { addToCart } from "@/utils/api";
+import toast from "react-hot-toast";
 
-const AddToCartSection = () => {
+const AddToCartSection = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
 
   // decrement quantity
@@ -18,12 +20,27 @@ const AddToCartSection = () => {
   const incrementQuantity = () => {
     setQuantity(quantity + 1);
   };
+
+  const addItemToCart = async () => {
+    try {
+      const res = await addToCart({ productId: product._id, quantity });
+      if (res.data.cart) {
+        toast.success("Item added to cart");
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (err) {
+      toast.error("Something went wrong");
+    }
+  };
   return (
     <motion.div
-    initial={{ opacity: 0, y: 50 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5 }} className="grid sm:grid-cols-2 items-center gap-8">
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className="grid sm:grid-cols-2 items-center gap-8"
+    >
       <div className="flex items-center gap-5">
         Quantity
         <div className="flex items-center gap-5">
@@ -42,7 +59,9 @@ const AddToCartSection = () => {
           </button>
         </div>
       </div>
-      <button className="primary-btn">Add to Cart</button>
+      <button onClick={addItemToCart} className="primary-btn">
+        Add to Cart
+      </button>
     </motion.div>
   );
 };

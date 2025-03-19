@@ -112,13 +112,13 @@ const Banner = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
-                    className="max-w-lg space-y-4 py-8"
+                    className="max-w-3xl space-y-4 py-8"
                   >
                     <p className="text-lg text-primary font-bold">
                       HOT PRODUCTS
                     </p>
-                    <h1 className="text1">Welcome to Techhaven</h1>
-                    <p className="font-bold text-lg text-[#c6c6c6] leading-tight">
+                    {/* <h1 className="text1">Welcome to Techhaven</h1> */}
+                    <p className="font-semibold text2 text-[#c6c6c6] leading-tight">
                       Your One-Stop Shop for the Latest Electronics,
                       Accessories, and Gadgets
                     </p>

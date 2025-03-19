@@ -8,15 +8,12 @@ import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { productImages } from "@/content/constant";
-import { addToCart } from "@/utils/api";
+import { addToCart, deleteCartItem } from "@/utils/api";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { addItemToCart } from "@/store/features/cartSlice";
 
-const CartItem = ({
-  item,
-  cartItems,
-}) => {
+const CartItem = ({ item, cartItems }) => {
   const [quantity, setQuantity] = useState(item.quantity);
   const dispatch = useDispatch();
   const [subtotal, setSubtotal] = useState(item.subtotal);
@@ -83,11 +80,14 @@ const CartItem = ({
   };
 
   // remove item
-  const handleRemoveItem = () => {
-    const updatedCartItems = cartItems.filter(
-      (cartItem) => cartItem.id !== item.id
-    );
-    // setCartItems(updatedCartItems);
+  const handleRemoveItem = async () => {
+    try {
+      const res = await deleteCartItem(item.productId._id);
+      console.log(res.data);
+    } catch (err) {
+      console.log(err);
+      toast.error("Something went wrong");
+    }
   };
 
   return (
@@ -100,7 +100,7 @@ const CartItem = ({
     >
       <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
         <Link
-          href={`/products/${item.productId._id}`}
+          href={`/product/${item.productId._id}`}
           className="flex-shrink-0"
         >
           <Image
@@ -132,10 +132,10 @@ const CartItem = ({
         >
           <RiDeleteBin6Line size={20} />
         </button>
-        <button className="p-3 flex gap-3 border rounded-xl border-primary hover:bg-red-50 transition-colors">
-          <IoIosHeart size={20} className="text-red-600" />
+        {/* <button className="p-3 flex gap-3 border rounded-xl border-primary hover:bg-red-50 transition-colors">
+          <IoIosHeart size={20} className="text-red-600" /> */}
           {/* <IoIosHeartEmpty size={20} className="text-red-600" /> */}
-        </button>
+        {/* </button> */}
       </div>
     </motion.div>
   );

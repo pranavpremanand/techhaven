@@ -5,21 +5,43 @@ import { categories } from "@/components/Header";
 import ProductCardItem from "@/components/ProductCardItem";
 import RecentlyViewed from "@/components/RecentlyViewed";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useParams } from "next/navigation";
+import { getAllProducts } from "@/utils/api";
+import toast from "react-hot-toast";
 
 const page = () => {
   const [showFilter, setShowFilter] = useState(true);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const params = useParams();
   const category = categories.find((item) =>
     item.url.includes(params.category)
   );
 
-  const products = typeof window !== "undefined" && JSON.parse(localStorage.getItem("products")) || [];
-  const filteredProducts = products.filter(
-    (item) => item.category === category.name
-  );
+  const getProducts = async () => {
+    try {
+      const res = await getAllProducts();
+      if (res.data.length > 0) {
+        const products = res.data.map((item) => ({
+          ...item,
+          category: "Electronics & Gadgets",
+        }));
+        localStorage.setItem("products", JSON.stringify(products));
+        const updatedList = products.filter(
+          (item) => item.category === category.name
+        );
+        setFilteredProducts(updatedList);
+      }
+    } catch (err) {
+      toast.error("Something went wrong");
+    }
+  };
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
   return (
     <>
       <div className="header-height wrapper section-py">

@@ -37,7 +37,7 @@ const ProductCardItem = ({ item }) => {
         <IoIosHeartEmpty size={25} className="text-red-600" />
       </button> */}
       <Link
-        href="/product/1"
+        href={`/product/${item._id}`}
         className="aspect-square flex justify-center items-center relative"
       >
         <Image
