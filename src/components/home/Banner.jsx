@@ -117,7 +117,7 @@ const Banner = () => {
                     <p className="text-lg text-primary font-bold">
                       HOT PRODUCTS
                     </p>
-                    {/* <h1 className="text1">Welcome to Techhaven</h1> */}
+                    {/* <h1 className="text1">Welcome to ARK For Ease</h1> */}
                     <p className="font-semibold text2 text-[#c6c6c6] leading-tight">
                       Your One-Stop Shop for the Latest Electronics,
                       Accessories, and Gadgets
@@ -239,7 +239,7 @@ const CategoriesSlider = () => {
         return (
           <Link
             key={category.name}
-            href={`/products/${category.url}`}
+            href={`${category.url}`}
             // keen-slider__slide
             className={`${
               isLastItemEven && "col-span-2 w-1/2 mx-auto"

@@ -1,5 +1,5 @@
 {
-  "name": "techhaven",
+  "name": "ARK For Ease",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.3",
+    "@react-pdf/renderer": "^4.3.0",
     "@reduxjs/toolkit": "^2.6.1",
     "axios": "^1.8.3",
     "country-state-city": "^3.2.1",

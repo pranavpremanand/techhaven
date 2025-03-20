@@ -34,9 +34,16 @@ const cartSlice = createSlice({
         // Recalculate the total based on all items in the cart
         state.total = state.cartItems.reduce((acc, item) => acc + item.subtotal, 0);
       },
+      removeItemFromCart: (state, action) => {
+        state.cartItems = state.cartItems.filter(
+          (item) => item.productId._id !== action.payload
+        );
+        // Recalculate the total based on all items in the cart
+        state.total = state.cartItems.reduce((acc, item) => acc + item.subtotal, 0);
+      },
     },
   });
 
-export const { addItemToCart, setCartItems } = cartSlice.actions;
+export const { addItemToCart, setCartItems,removeItemFromCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

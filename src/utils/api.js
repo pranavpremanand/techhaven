@@ -52,11 +52,23 @@ export const createUserAddress = data =>  request.post(`${baseUrl}/address/addAd
 // make address default
 export const setDefaultAddress = data =>  request.put(`${baseUrl}/address/setAddressDefault`, data);
 
-// create order
-export const createOrder = data =>  request.post(`${baseUrl}/orders/create-order`, data);
-
 // get user profile
 export const getUserProfile = () =>  request.get(`${baseUrl}/user`);
 
 // update user profile
 export const updateUserProfile = data =>  request.put(`${baseUrl}/user/update-profile`, data);
+
+// create order
+export const createOrder = data =>  request.post(`${baseUrl}/orders/create-order`, data);
+
+// payment verification
+export const verifyPayment = data =>  request.post(`${baseUrl}/orders/verify-payment`, data);
+
+// get all orders
+export const getAllOrders = () =>  request.get(`${baseUrl}/orders/get-order`);
+
+// get order details by id
+export const getOrderDetailsById = id =>  request.get(`${baseUrl}/orders/getOne-order/${id}`);
+
+// delete address
+export const deleteAddress = id =>  request.delete(`${baseUrl}/address/addressDelete/${id}`);

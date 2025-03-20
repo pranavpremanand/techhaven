@@ -10,6 +10,7 @@ import EditorsBestChoice from "@/components/EditorsBestChoice";
 import BrandLogos from "@/components/BrandLogos";
 import { motion } from "framer-motion";
 import { getAllProducts } from "@/utils/api";
+import toast from "react-hot-toast";
 
 export default function Home() {
   const [isClient, setIsClient] = useState(false);
@@ -101,7 +102,7 @@ export default function Home() {
               environment.
             </p>
             <h4 className="text3">
-              Start From <br /> ₹1,800
+              Start From <br /> ₹1,999
             </h4>
 
             <Link

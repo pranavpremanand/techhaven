@@ -26,10 +26,10 @@ const Page = () => {
     try {
       setIsLoading(true);
       const res = await getUserProfile();
-      if (res.data) {
+      if (res.data.success) {
         // Set default values for the form
-        setValue("fullName", res.data.fullName);
-        setValue("email", res.data.email);
+        setValue("fullName", res.data.user.fullName);
+        setValue("email", res.data.user.email);
       }
     } catch (err) {
       toast.error("Failed to fetch profile data");
@@ -47,7 +47,7 @@ const Page = () => {
     try {
       setIsLoading(true);
       const res = await updateUserProfile(data);
-      if (res.data) {
+      if (res.data.success) {
         toast.success("Profile updated successfully");
         localStorage.setItem("user", JSON.stringify(res.data.user));
         setEditable(false); // Disable edit mode after submission

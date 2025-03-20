@@ -15,7 +15,7 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: "Techhaven",
+  title: "ARK For Ease",
   description: "",
 };
 

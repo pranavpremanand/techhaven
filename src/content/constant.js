@@ -1,7 +1,8 @@
 export const companyDetails = {
-  phone: "+00000000",
-  email: "Support@techhaven.com",
-  location: "Office address, City, Country",
+  name:"ARK For Ease",
+  phone: "+918639095767",
+  email: "arkenterprises278@gmail.com",
+  location: "",
 };
 
 // featured products
@@ -63,7 +64,7 @@ export const featuredProducts = [
 ];
 
 export const productImages = {
-  mainImage: "/images/featured-products/1.png",
+  mainImage: "/images/product-details/1.webp",
   images: [
     "/images/product-details/1.webp",
     "/images/product-details/2.webp",

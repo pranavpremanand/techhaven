@@ -26,10 +26,10 @@ const page = () => {
     try {
       const res = await changePassword(data);
       if (res.data.success) {
-        toast.error(res.data.message);
-      } else {
         toast.success("Password changed successfully");
         reset();
+      } else {
+        toast.error(res.data.message);
       }
     } catch (err) {
       toast.error("Failed to change password");

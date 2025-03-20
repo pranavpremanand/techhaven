@@ -29,8 +29,8 @@ const dashboardOptions = [
     id: 3,
     label: "Saved Items",
     icon: <BsBookmarkHeartFill size={20} />,
-    path: "/profile/#",
-    // path: "/profile/wishlist",
+    // path: "/profile/#",
+    path: "/profile/wishlist",
   },
   {
     id: 4,

@@ -55,12 +55,12 @@ const Header = () => {
                 </Link>
               </div>
             </div>
-            <div className="hidden lg:flex items-center gap-5">
+            {/* <div className="hidden lg:flex items-center gap-5">
               <div className="flex items-center gap-2">
                 <FaLocationDot size={15} />
                 <span>{companyDetails.location}</span>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

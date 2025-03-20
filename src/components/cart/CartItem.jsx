@@ -11,7 +11,7 @@ import { productImages } from "@/content/constant";
 import { addToCart, deleteCartItem } from "@/utils/api";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
-import { addItemToCart } from "@/store/features/cartSlice";
+import { addItemToCart, removeItemFromCart } from "@/store/features/cartSlice";
 
 const CartItem = ({ item, cartItems }) => {
   const [quantity, setQuantity] = useState(item.quantity);
@@ -83,9 +83,13 @@ const CartItem = ({ item, cartItems }) => {
   const handleRemoveItem = async () => {
     try {
       const res = await deleteCartItem(item.productId._id);
-      console.log(res.data);
+      if (res.data.success) {
+        dispatch(removeItemFromCart(item.productId._id));
+        toast.success("Item removed from cart");
+      } else {
+        toast.error(res.data.message);
+      }
     } catch (err) {
-      console.log(err);
       toast.error("Something went wrong");
     }
   };
@@ -99,10 +103,7 @@ const CartItem = ({ item, cartItems }) => {
       className="flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-4 bg-white text-black p-5 rounded-xl shadow-sm"
     >
       <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
-        <Link
-          href={`/product/${item.productId._id}`}
-          className="flex-shrink-0"
-        >
+        <Link href={`/product/${item.productId._id}`} className="flex-shrink-0">
           <Image
             src={productImages.mainImage}
             alt={item.productId.productName}
@@ -134,7 +135,7 @@ const CartItem = ({ item, cartItems }) => {
         </button>
         {/* <button className="p-3 flex gap-3 border rounded-xl border-primary hover:bg-red-50 transition-colors">
           <IoIosHeart size={20} className="text-red-600" /> */}
-          {/* <IoIosHeartEmpty size={20} className="text-red-600" /> */}
+        {/* <IoIosHeartEmpty size={20} className="text-red-600" /> */}
         {/* </button> */}
       </div>
     </motion.div>

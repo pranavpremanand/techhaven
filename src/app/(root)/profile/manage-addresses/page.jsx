@@ -6,6 +6,7 @@ import AddressCard from "@/components/profile/AddressCard";
 import AddressForm from "@/components/profile/AddressForm";
 import {
   createUserAddress,
+  deleteAddress,
   getUserAddresses,
   setDefaultAddress,
 } from "@/utils/api";
@@ -69,9 +70,13 @@ const page = () => {
   // Delete address
   const handleDeleteAddress = async (id) => {
     try {
-      //   await deleteAddress(id);
-      toast.success("Address deleted successfully");
-      fetchAddresses(); // Refresh addresses
+      const res = await deleteAddress(id);
+      if (res.data.success) {
+        toast.success("Address deleted successfully");
+        fetchAddresses();
+      } else {
+        toast.error("Failed to delete address");
+      }
     } catch (err) {
       toast.error("Failed to delete address");
     }

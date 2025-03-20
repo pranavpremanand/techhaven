@@ -129,7 +129,7 @@ const Footer = () => {
       <div className="bg-primary pt-3 mt-10 pb-[5rem] lg:pb-3">
         <div className="wrapper text-center">
           <p>
-            Copyright © {new Date().getFullYear()} Techhaven. All Right Reseved
+            Copyright © {new Date().getFullYear()} ARK For Ease. All Right Reseved
           </p>
           {/* <div className="h-[1px] w-full max-w-[20rem] bg-white rounded" /> */}
         </div>

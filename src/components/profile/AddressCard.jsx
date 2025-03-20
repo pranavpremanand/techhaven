@@ -36,12 +36,12 @@ const AddressCard = ({ address, onSetDefault, onEdit, onDelete }) => {
         >
           Edit
         </button> */}
-        {/* <button
+        <button
           onClick={() => onDelete(address._id)}
           className="text-sm text-red-500 hover:underline"
         >
           Delete
-        </button> */}
+        </button>
       </div>
     </div>
   );
