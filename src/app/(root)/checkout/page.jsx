@@ -38,6 +38,7 @@ const page = () => {
     formState: { errors },
   } = useForm({
     resolver: zodResolver(addressSchema),
+    mode: "all",
   });
 
   // Get cart data
@@ -169,7 +170,7 @@ const page = () => {
                         type="text"
                         {...register("firstName")}
                         className="py-3 px-2 bg-white text-black rounded-xl outline-none w-full"
-                        onChange={() => setEdittingUserData(true)}
+                        onFocus={() => setEdittingUserData(true)}
                       />
                       {errors.firstName && (
                         <small className="text-red-600">
@@ -184,7 +185,7 @@ const page = () => {
                         type="text"
                         {...register("lastName")}
                         className="py-3 px-2 bg-white text-black rounded-xl outline-none w-full"
-                        onChange={() => setEdittingUserData(true)}
+                        onFocus={() => setEdittingUserData(true)}
                       />
                       {errors.lastName && (
                         <small className="text-red-600">
@@ -202,7 +203,7 @@ const page = () => {
                         type="email"
                         {...register("email")}
                         className="py-3 px-2 bg-white text-black rounded-xl outline-none w-full"
-                        onChange={() => setEdittingUserData(true)}
+                        onFocus={() => setEdittingUserData(true)}
                       />
                       {errors.email && (
                         <small className="text-red-600">
@@ -217,7 +218,7 @@ const page = () => {
                         type="tel"
                         {...register("phone")}
                         className="py-3 px-2 bg-white text-black rounded-xl outline-none w-full"
-                        onChange={() => setEdittingUserData(true)}
+                        onFocus={() => setEdittingUserData(true)}
                       />
                       {errors.phone && (
                         <small className="text-red-600">
@@ -234,7 +235,7 @@ const page = () => {
                       type="text"
                       {...register("address")}
                       className="py-3 px-2 bg-white text-black rounded-xl outline-none w-full"
-                      onChange={() => setEdittingUserData(true)}
+                      onFocus={() => setEdittingUserData(true)}
                     />
                     {errors.address && (
                       <small className="text-red-600">
@@ -251,7 +252,7 @@ const page = () => {
                         type="text"
                         {...register("note")}
                         className="py-3 px-2 bg-white text-black rounded-xl outline-none w-full"
-                        onChange={() => setEdittingUserData(true)}
+                        onFocus={() => setEdittingUserData(true)}
                       />
                       {errors.note && (
                         <small className="text-red-600">
@@ -282,7 +283,7 @@ const page = () => {
                         })}
                         className="py-3 px-2 bg-white text-black rounded-xl outline-none w-full"
                         maxLength={6}
-                        onChange={() => setEdittingUserData(true)}
+                        onFocus={() => setEdittingUserData(true)}
                       />
                       {errors.pinCode && (
                         <small className="text-red-600">
@@ -300,7 +301,7 @@ const page = () => {
                         type="text"
                         {...register("city")}
                         className="py-3 px-2 bg-white text-black rounded-xl outline-none w-full"
-                        onChange={() => setEdittingUserData(true)}
+                        onFocus={() => setEdittingUserData(true)}
                       />
                       {errors.city && (
                         <small className="text-red-600">
@@ -315,7 +316,7 @@ const page = () => {
                       <select
                         {...register("state")}
                         className="py-3 px-2 bg-white text-black rounded-xl outline-none w-full"
-                        onChange={() => setEdittingUserData(true)}
+                        onFocus={() => setEdittingUserData(true)}
                       >
                         <option value="">Select State</option>
                         {states.map((state) => (
@@ -333,19 +334,16 @@ const page = () => {
                   </div>
 
                   {/* Submit Button */}
-                  {!userData ||
-                    (userData && edittingUserData ? (
-                      <div className="pt-3">
-                        <button
-                          type="submit"
-                          className="primary-btn w-full !rounded-xl"
-                        >
-                          Add Address
-                        </button>
-                      </div>
-                    ) : (
-                      ""
-                    ))}
+                  {!userData || (userData && edittingUserData) ? (
+                    <div className="pt-3">
+                      <button
+                        type="submit"
+                        className="primary-btn w-full !rounded-xl"
+                      >
+                        Add Address
+                      </button>
+                    </div>
+                  ) : null}
                 </form>
               </motion.div>
 
