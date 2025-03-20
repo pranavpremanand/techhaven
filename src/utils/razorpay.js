@@ -73,7 +73,7 @@ export const doPayment = async ({ isExpressDelivery, userData }) => {
               name: "ARK For Ease",
             };
 
-            const res = axios.post(
+            const res = await axios.post(
               "https://send-mail-redirect-boostmysites.vercel.app/send-email",
               payload
             );

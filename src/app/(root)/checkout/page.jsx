@@ -363,7 +363,7 @@ const page = () => {
                       cartItems.map((product) => (
                         <div
                           key={product.productId._id}
-                          className="grid grid-cols-[2rem,auto,auto] gap-5"
+                          className="grid grid-cols-[2rem,auto,auto] gap-2 sm:gap-5"
                         >
                           <span>{product.quantity}x</span>
                           <p>{product.productId.productName}</p>
