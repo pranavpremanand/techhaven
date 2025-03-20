@@ -12,7 +12,7 @@ const page = () => {
           <HiMiniCheck className="w-12 h-12 text-[#8AFFA2]" />
         </div>
         <h2 className="text-2xl font-medium mt-4">
-          Your order is successfully placed. We will contact you soon.
+          Your order is successfully placed. <br /> We will contact you soon.
         </h2>
         <div className="mt-6 grid sm:grid-cols-2 items-center gap-4 sm:gap-7">
           <Link href="/profile" className="primary-btn">
