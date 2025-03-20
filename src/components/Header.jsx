@@ -36,7 +36,8 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="w-full h-fit z-[999] bg-black lg:fixed inset-0">
+    // lg:fixed
+    <div className="w-full h-fit z-[999] bg-black fixed inset-0">
       {/* Top Contact Bar (Visible on lg and above) */}
       <div className={`${isSticky ? "hidden" : "block"}`}>
         <div className="hidden lg:flex bg-primary py-3">
@@ -81,7 +82,7 @@ const Header = () => {
         {/* Search, Cart, and Account (Visible on lg and above) */}
         <div className="flex w-full items-center justify-end gap-8">
           {/* Search Input (Hidden on lg and below) */}
-          <div className="p-3 w-full max-w-lg bg-white text-black rounded-lg overflow-hidden hidden lg:flex items-center gap-2">
+          {/* <div className="p-3 w-full max-w-lg bg-white text-black rounded-lg overflow-hidden hidden lg:flex items-center gap-2">
             <input
               type="text"
               className="w-full outline-none"
@@ -90,7 +91,7 @@ const Header = () => {
             <button type="submit">
               <FaSearch size={20} />
             </button>
-          </div>
+          </div> */}
 
           {/* Cart Icon */}
           <Link href="/cart" className="link">
@@ -163,7 +164,7 @@ const Header = () => {
       </div>
 
       {/* Sticky Search Input (Visible on lg and below) */}
-      <div
+      {/* <div
         className={`lg:hidden w-full bg-black transition-all duration-300 ${
           isSticky ? "fixed top-0 z-[9999] pt-2" : "relative"
         }`}
@@ -180,7 +181,7 @@ const Header = () => {
             </button>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
