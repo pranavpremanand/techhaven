@@ -1,6 +1,6 @@
 const { default: axios } = require("axios");
 
-const baseUrl = 'http://localhost:5000/api';
+const baseUrl = process.env.NEXT_PUBLIC_BACKEND_BASE_URL
 
 // Create an Axios instance
 const request = axios.create({
