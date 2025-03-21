@@ -26,7 +26,7 @@ const layout = ({ children }) => {
             Sign Up
           </Link>
         </div>
-        <div>{children}</div>
+        <div className="flex items-center">{children}</div>
       </div>
     </div>
   );

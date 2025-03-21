@@ -44,7 +44,7 @@ body {
   }
   .header-height {
     /* @apply mt-0 lg:mt-[8rem]; */
-    @apply mt-0 lg:mt-[12.1rem];
+    @apply mt-[6rem] lg:mt-[12.1rem];
   }
 }
 

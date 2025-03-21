@@ -41,14 +41,15 @@ const BottomTabOptions = () => {
   const pathname = usePathname();
   const dispatch = useDispatch();
   const router = useRouter();
+  const token = typeof window !== "undefined" && localStorage.getItem("token");
 
   const doLogout = () => {
-      dispatch(logout()); // Clear Redux state
-      Cookies.remove("token"); // Clear cookies
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-      router.push("/signin");
-    };
+    dispatch(logout()); // Clear Redux state
+    Cookies.remove("token"); // Clear cookies
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    router.push("/signin");
+  };
   return (
     <div className="fixed bottom-0 left-0 w-full bg-white h-fit z-[9999] lg:hidden block">
       <div className="grid grid-cols-4">
@@ -64,13 +65,23 @@ const BottomTabOptions = () => {
             <p className="text-xs">{option.label}</p>
           </Link>
         ))}
-        <button
-          onClick={doLogout}
-          className={`text-black flex flex-col items-center justify-center gap-1 p-2`}
-        >
-          <FiLogOut />
-          <p className="text-xs">Logout</p>
-        </button>
+        {token ? (
+          <button
+            onClick={doLogout}
+            className={`text-black flex flex-col items-center justify-center gap-1 p-2`}
+          >
+            <FiLogOut />
+            <p className="text-xs">Logout</p>
+          </button>
+        ) : (
+          <Link
+            href="/signin"
+            className={`text-black flex flex-col items-center justify-center gap-1 p-2`}
+          >
+            <FiLogOut />
+            <p className="text-xs">Login</p>
+          </Link>
+        )}
       </div>
     </div>
   );

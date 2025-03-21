@@ -49,7 +49,7 @@ const page = () => {
   const onSubmit = async (data) => {
     try {
       const res = await doSignup(data);
-      if (res.data.user) {
+      if (res.data.success) {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", JSON.stringify(res.data.user));
         dispatch(setLoginStatus(true));
