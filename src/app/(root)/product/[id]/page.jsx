@@ -35,7 +35,7 @@ const page = () => {
         setError(true);
       }
     } catch (err) {
-      toast.error("Something went wrong");
+      toast.error(err.message);
       setError(true);
     } finally {
       setPageLoader(false);

@@ -39,8 +39,8 @@ export default function Home() {
         localStorage.setItem("products", JSON.stringify(res.data.products));
       }
     } catch (err) {
-      console.log(err);
-      toast.error("Something went wrong");
+      console.log(err.message);
+      toast.error(err.message);
     }
   };
 

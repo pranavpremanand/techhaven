@@ -59,7 +59,7 @@ const page = () => {
         toast.error(res.data.message);
       }
     } catch (err) {
-      toast.error("Something went wrong");
+      toast.error(err.message);
     }
   };
 

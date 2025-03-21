@@ -46,7 +46,7 @@ const page = () => {
         dispatch(setCartItems(res.data.cart.items));
       }
     } catch (err) {
-      toast.error("Something went wrong");
+      toast.error(err.message);
     } finally {
       dispatch(setLoading(false));
     }

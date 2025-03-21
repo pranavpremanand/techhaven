@@ -41,7 +41,7 @@ const Page = () => {
         setOrdersList(res.data.order);
       }
     } catch (err) {
-      toast.error("Something went wrong");
+      toast.error(err.message);
     }
   };
 

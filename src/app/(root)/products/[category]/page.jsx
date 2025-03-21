@@ -35,7 +35,7 @@ const page = () => {
         setFilteredProducts(updatedList);
       }
     } catch (err) {
-      toast.error("Something went wrong");
+      toast.error(err.message);
     }
   };
 

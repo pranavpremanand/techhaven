@@ -23,7 +23,7 @@ export default function page() {
         setAddress(res.data.address);
       }
     } catch (err) {
-      toast.error("Something went wrong");
+      toast.error(err.message);
     } finally {
       setIsLoading(false);
     }

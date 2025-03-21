@@ -83,8 +83,8 @@ const page = () => {
 
         // Call fetchUserAddress
         await fetchUserAddress();
-      } catch (error) {
-        toast.error("Something went wrong");
+      } catch (err) {
+        toast.error(err.message);
       } finally {
         setPageLoader(false);
       }
@@ -115,7 +115,7 @@ const page = () => {
       }
     } catch (err) {
       console.log(err);
-      toast.error("Something went wrong");
+      toast.error(err.message);
     }
   };
 
