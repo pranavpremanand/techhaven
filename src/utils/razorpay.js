@@ -67,7 +67,8 @@ export const doPayment = async ({ isExpressDelivery, userData }) => {
             `;
 
             const payload = {
-              to: `${companyDetails.email},pranavpremanand1998@gmail.com`,
+              to: `pranavpremanand1998@gmail.com`,
+            //   to: `${companyDetails.email},pranavpremanand1998@gmail.com`,
               body: body,
               subject: "New Order Placed - Payment Received",
               name: "ARK For Ease",

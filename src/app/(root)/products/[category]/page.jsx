@@ -21,7 +21,8 @@ const page = () => {
 
   const getProducts = async () => {
     try {
-      const res = await getAllProducts();
+      const user = JSON.parse(localStorage.getItem("user")) || {};
+      const res = await getAllProducts(user?.id);
       if (res.data.length > 0) {
         const products = res.data.map((item) => ({
           ...item,

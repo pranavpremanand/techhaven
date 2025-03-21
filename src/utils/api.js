@@ -29,10 +29,10 @@ export const doSignin = data =>  axios.post(`${baseUrl}/auth/`, data);
 export const changePassword = data =>  request.post(`${baseUrl}/auth/changePassword`, data);
 
 // get all products
-export const getAllProducts = () =>  axios.get(`${baseUrl}/products`);
+export const getAllProducts = (userId) =>  axios.get(`${baseUrl}/products/${userId}`);
 
 // get single product
-export const getSingleProduct = id =>  axios.get(`${baseUrl}/products/${id}`);
+export const getSingleProduct = id =>  axios.get(`${baseUrl}/products/get/${id}`);
 
 // add to cart
 export const addToCart = data =>  request.post(`${baseUrl}/products/addCart`, data);

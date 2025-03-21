@@ -5,9 +5,11 @@ import { FaMinus, FaPlus } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { addToCart } from "@/utils/api";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const AddToCartSection = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
+  const router = useRouter();
 
   // decrement quantity
   const decrementQuantity = () => {
@@ -22,6 +24,13 @@ const AddToCartSection = ({ product }) => {
   };
 
   const addItemToCart = async () => {
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+      toast.error("Please login to add items to cart");
+      router.push("/signin");
+      return;
+    }
     try {
       const res = await addToCart({ productId: product._id, quantity });
       if (res.data.cart) {

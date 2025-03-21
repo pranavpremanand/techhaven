@@ -21,7 +21,8 @@ export default function Home() {
 
   const getProducts = async () => {
     try {
-      const res = await getAllProducts();
+      const user = JSON.parse(localStorage.getItem("user")) || {};
+      const res = await getAllProducts(user?.id);
       // const product1 = {
       //   mainImage: "/images/featured-products/1.png",
       //   images: [
@@ -34,10 +35,11 @@ export default function Home() {
       //   category: "Electronics & Gadgets",
       // };
       // const products = [product1];
-      if (res.data.length > 0) {
-        localStorage.setItem("products", JSON.stringify(res.data));
+      if (res.data.success) {
+        localStorage.setItem("products", JSON.stringify(res.data.products));
       }
     } catch (err) {
+      console.log(err);
       toast.error("Something went wrong");
     }
   };
