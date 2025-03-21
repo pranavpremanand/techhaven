@@ -49,7 +49,7 @@ export default function page() {
   }
 
   const invoiceData = {
-    invoiceNo: order.orderNo,
+    invoiceNo: order.receipt,
     date: new Date(order.createdAt).toLocaleDateString("en-US", {
       month: "short",
       day: "2-digit",
