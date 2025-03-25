@@ -193,20 +193,20 @@ export const categories = [
     name: "Electronics & Gadgets",
     url: "/products/electronics-and-gadgets",
   },
-  {
-    name: "Smartphones",
-    url: "/products/smartphones",
-  },
-  {
-    name: "Laptops",
-    url: "/products/laptops",
-  },
-  {
-    name: "Gaming Equipments",
-    url: "/products/gaming-equipments",
-  },
-  {
-    name: "TV & Monitors",
-    url: "/products/tv-and-monitors",
-  },
+  // {
+  //   name: "Smartphones",
+  //   url: "/products/smartphones",
+  // },
+  // {
+  //   name: "Laptops",
+  //   url: "/products/laptops",
+  // },
+  // {
+  //   name: "Gaming Equipments",
+  //   url: "/products/gaming-equipments",
+  // },
+  // {
+  //   name: "TV & Monitors",
+  //   url: "/products/tv-and-monitors",
+  // },
 ];
