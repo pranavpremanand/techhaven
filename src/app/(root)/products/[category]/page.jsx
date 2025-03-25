@@ -23,8 +23,8 @@ const page = () => {
     try {
       const user = JSON.parse(localStorage.getItem("user")) || {};
       const res = await getAllProducts(user?.id);
-      if (res.data.length > 0) {
-        const products = res.data.map((item) => ({
+      if (res.data.products.length > 0) {
+        const products = res.data.products.map((item) => ({
           ...item,
           category: "Electronics & Gadgets",
         }));
