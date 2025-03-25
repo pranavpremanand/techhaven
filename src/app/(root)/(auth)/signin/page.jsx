@@ -48,8 +48,11 @@ const page = () => {
         toast.error(res.data.message);
       }
     } catch (err) {
-      console.log(err);
-      toast.error(err.message);
+      if (err?.response?.data) {
+        toast.error(err?.response?.data?.message);
+      } else {
+        toast.error(err.message);
+      }
     }
   };
 
