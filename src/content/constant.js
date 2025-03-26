@@ -1,7 +1,7 @@
 export const companyDetails = {
   name: "ARK For Ease",
   phone: "+918639095767",
-  email: "arkenterprises278@gmail.com",
+  email: "supportfromark@gmail.com",
   location: "",
 };
 
