@@ -1,3 +1,5 @@
+"use client";
+
 const loading = () => {
   return (
     <div aria-label="Loading..." className="spinner-parent" role="status">
