@@ -76,6 +76,7 @@ export const productImages = {
     "/images/product-details/8.webp",
     "/images/product-details/9.webp",
     "/images/product-details/10.webp",
+    "/images/product-details/11.webp",
   ],
 };
 
