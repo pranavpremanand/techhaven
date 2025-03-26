@@ -64,7 +64,7 @@ export const featuredProducts = [
 ];
 
 export const productImages = {
-  mainImage: "/images/product-details/1.webp",
+  mainImage: "/images/product-details/1.png",
   images: [
     "/images/product-details/1.webp",
     "/images/product-details/2.webp",

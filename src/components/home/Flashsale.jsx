@@ -18,7 +18,7 @@ const Flashsale = () => {
   }, []);
 
   // Set the target end date for the countdown
-  const targetDate = new Date("2025-03-25T23:59:59").getTime();
+  const targetDate = new Date("2025-04-25T23:59:59").getTime();
 
   // State to store the remaining time
   const [timeLeft, setTimeLeft] = useState({
