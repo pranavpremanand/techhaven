@@ -125,7 +125,7 @@ const page = () => {
         {/* <EditorsBestChoice />
         <RecentlyViewed /> */}
       </div>
-      <BrandLogos />
+      {/* <BrandLogos /> */}
     </>
   );
 };

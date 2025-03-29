@@ -98,7 +98,7 @@ const Footer = () => {
               </Link>
             </li>
           </ul>
-          <div className="flex items-center gap-5 pt-5">
+          {/* <div className="flex items-center gap-5 pt-5">
             <Link
               href="/"
               className="group w-8 h-8 flex justify-center items-center bg-primary rounded-md hover:bg-white transition-all duration-200"
@@ -123,7 +123,7 @@ const Footer = () => {
             >
               <FaLinkedinIn size={20} className="group-hover:text-primary" />
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="bg-primary pt-3 mt-10 pb-[5rem] lg:pb-3">

@@ -131,7 +131,6 @@ const page = () => {
             transition={{ duration: 0.5 }}
             className="space-y-3"
           >
-            <h5 className="text-lg font-semibold">Description</h5>
             <div
               dangerouslySetInnerHTML={{ __html: product.description }}
             ></div>
