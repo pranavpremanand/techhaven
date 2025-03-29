@@ -118,7 +118,7 @@ export default function Home() {
       </section>
       {/* <FeaturedProductsSection /> */}
       {/* <EditorsBestChoice /> */}
-      <BrandLogos />
+      {/* <BrandLogos /> */}
     </div>
   );
 }
