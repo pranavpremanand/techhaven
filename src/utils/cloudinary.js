@@ -1,25 +1,21 @@
-export const uploadImageToCloudinary = async (file) => {
-  const CLOUD_NAME = dqpio3kre; // Your Cloudinary cloud name
-  const UPLOAD_PRESET = "Products"; // Your upload preset name
+import React from "react";
+import { Cloudinary } from "@cloudinary/url-gen";
+import { auto } from "@cloudinary/url-gen/actions/resize";
+import { autoGravity } from "@cloudinary/url-gen/qualifiers/gravity";
+import { AdvancedImage } from "@cloudinary/react";
+import axios from "axios";
 
-  console.log(CLOUD_NAME,"Clo");
-  
+export const uploadImageToCloudinary = async (formData) => {
+  const CLOUD_NAME = "dqpio3kre"; // Your Cloudinary cloud name
 
-  const formData = new FormData();
-  formData.append("file", file);
-  formData.append("upload_preset", UPLOAD_PRESET);
+  console.log(CLOUD_NAME, "Clo");
 
   try {
-    const response = await fetch(
+    const res = await axios.post(
       `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
-      {
-        method: "POST",
-        body: formData,
-      }
+      formData
     );
-
-    const data = await response.json();
-    return data.secure_url; // Returns the uploaded image URL
+    return res;
   } catch (error) {
     console.error("Cloudinary upload failed:", error);
     throw new Error("Image upload failed");
