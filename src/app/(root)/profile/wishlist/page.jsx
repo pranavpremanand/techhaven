@@ -1,3 +1,4 @@
+"use client";
 // import ProductCardItem2 from "@/components/ProductCardItem2";
 import UnderDevelopment from "@/components/UnderDevelopment";
 
