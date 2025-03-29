@@ -59,9 +59,8 @@ export default function page() {
     products: order.cartItems.map((product) => ({
       name: product.productId.productName,
       quantity: product.quantity,
-      price:
-        product.productId.price -
-        (product.productId.price * product.productId.offerPercentage) / 100,
+      price: product.totalprice,
+      total: product.totalprice * product.quantity,
     })),
     deliveryCharge: order.isExpressDelivery ? (200).toLocaleString() : "Free",
     address: {
@@ -127,11 +126,7 @@ export default function page() {
                 </p>
               </div>
               <p className="text-sm font-medium">
-                ₹
-                {product.productId.price -
-                  (product.productId.price *
-                    product.productId.offerPercentage) /
-                    100}
+                ₹{product.totalprice * product.quantity}
               </p>
             </div>
           ))}

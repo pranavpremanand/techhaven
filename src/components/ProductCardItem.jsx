@@ -14,9 +14,7 @@ const ProductCardItem = ({ item }) => {
   const [quantity, setQuantity] = useState(item.quantity || 1);
   const [itemIsInCart, setItemIsInCart] = useState(item.itemIsInCart);
   const router = useRouter();
-  const [subtotal, setSubtotal] = useState(
-    item.price * (1 - item.offerPercentage / 100) * quantity
-  );
+  const [subtotal, setSubtotal] = useState(item.totalPrice * quantity);
 
   const handleAddToCart = async (newQuantity) => {
     const token = localStorage.getItem("token");
@@ -36,7 +34,7 @@ const ProductCardItem = ({ item }) => {
         );
         setItemIsInCart(true);
         setQuantity(newQuantity);
-        const productAmt = item.price * (1 - item.offerPercentage / 100);
+        const productAmt = item.totalPrice;
         setSubtotal(productAmt * newQuantity);
       } else {
         toast.error(res.data.message);
@@ -86,9 +84,7 @@ const ProductCardItem = ({ item }) => {
           {item.productName}
         </Link>
         <p className="pb-3">
-          <span className="text-white">
-            ₹{item.price * (1 - item.offerPercentage / 100)}
-          </span>
+          <span className="text-white">₹ {item.totalPrice}</span>
         </p>
         {itemIsInCart ? (
           <div className="px-3 py-2 flex gap-3 border rounded-xl border-primary">

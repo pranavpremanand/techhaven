@@ -29,18 +29,12 @@ export const doPayment = async ({ isExpressDelivery, userData }) => {
             razorpay_payment_id: response.razorpay_payment_id,
             razorpay_order_id: response.razorpay_order_id,
             razorpay_signature: response.razorpay_signature,
-            to: "mpranavprem@gmail.com",
-            body: "Payment received",
-            subject: "New Order Placed - Payment Received",
-            name: "ARK For Ease",
           });
 
           if (verifyResponse.data.success) {
             // toast.success("Payment verified! Order placed.");
             const body = `Order placed successfully.\n
-            Payment ID: ${
-              response.razorpay_payment_id
-            }\n
+            Payment ID: ${response.razorpay_payment_id}\n
             Order ID: ${order.id}\n
             Amount: ${order.amount / 100} ${order.currency}\n\n\n
             Shipping Address:\n
@@ -58,17 +52,19 @@ export const doPayment = async ({ isExpressDelivery, userData }) => {
             ${verifyResponse.data.user.cartItems.map((product) => {
               return `${product.productId.productName} - ${
                 product.quantity
-              } x ${
+              } x ${Math.round(
                 product.productId.price -
-                (product.productId.price * product.productId.offerPercentage) /
-                  100
-              }\n`;
+                  (product.productId.price *
+                    product.productId.offerPercentage) /
+                    100
+              )}\n`;
             })}
             `;
 
             const payload = {
-              // to: `pranavpremanand1998@gmail.com`,
-              to: `${companyDetails.email},pranavpremanand1998@gmail.com`,
+              // ${companyDetails.email},
+              to: `
+              pranavpremanand1998@gmail.com`,
               body: body,
               subject: "New Order Placed - Payment Received",
               name: "ARK For Ease",

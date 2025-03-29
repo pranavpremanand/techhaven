@@ -131,7 +131,7 @@ const InvoiceDocument = ({ invoiceData }) => (
               {product.price.toLocaleString()} Rs
             </Text>
             <Text style={styles.tableCell}>
-              {(product.quantity * product.price).toLocaleString()} Rs
+              {(product.total).toLocaleString()} Rs
             </Text>
           </View>
         ))}

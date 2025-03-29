@@ -30,8 +30,8 @@ const page = () => {
   const calculateTotal = () => {
     const subtotal = cartItems.reduce((acc, item) => {
       const productAmt =
-        item.productId.price * (1 - item.productId.offerPercentage / 100);
-      return acc + productAmt * item.quantity;
+        item.subtotal
+      return acc + productAmt
     }, 0);
     setSubtotal(subtotal);
     setTotal(subtotal + shippingCharge);

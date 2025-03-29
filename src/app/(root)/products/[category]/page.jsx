@@ -22,7 +22,7 @@ const page = () => {
   const getProducts = async () => {
     try {
       const user = JSON.parse(localStorage.getItem("user")) || {};
-      const res = await getAllProducts(user?.id);
+      const res = await getAllProducts(user?._id);
       if (res.data.products.length > 0) {
         const products = res.data.products.map((item) => ({
           ...item,

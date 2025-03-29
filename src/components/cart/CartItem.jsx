@@ -29,9 +29,7 @@ const CartItem = ({ item, cartItems }) => {
         });
         if (res.data.cart) {
           setQuantity(updatedQty);
-          const productAmt =
-            item.productId.price * (1 - item.productId.offerPercentage / 100);
-          const subTotal = productAmt * updatedQty;
+          const subTotal = res.data.pricePerProduct * updatedQty;
           setSubtotal(subTotal);
           dispatch(
             addItemToCart({
@@ -59,10 +57,8 @@ const CartItem = ({ item, cartItems }) => {
       });
       if (res.data.cart) {
         setQuantity(updatedQty);
-        const productAmt =
-          item.productId.price * (1 - item.productId.offerPercentage / 100);
 
-        const subTotal = productAmt * updatedQty;
+        const subTotal = res.data.pricePerProduct * updatedQty;
         setSubtotal(subTotal);
         dispatch(
           addItemToCart({
@@ -105,7 +101,7 @@ const CartItem = ({ item, cartItems }) => {
       <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
         <Link href={`/product/${item.productId._id}`} className="flex-shrink-0">
           <Image
-            src={productImages.mainImage}
+            src={item.productId.imageUrls[0]}
             alt={item.productId.productName}
             width={80}
             height={80}
@@ -114,7 +110,7 @@ const CartItem = ({ item, cartItems }) => {
         </Link>
         <div className="flex flex-col text-center sm:text-start justify-between gap-2">
           <h5 className="text-lg font-medium">{item.productId.productName}</h5>
-          <h4 className="text-xl font-semibold text-primary">₹{subtotal}</h4>
+          <h4 className="text-xl font-semibold text-primary">₹ {subtotal}</h4>
         </div>
       </div>
       <div className="flex items-center gap-4 w-full md:w-auto justify-center sm:justify-end">

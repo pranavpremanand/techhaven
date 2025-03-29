@@ -22,7 +22,7 @@ export default function Home() {
   const getProducts = async () => {
     try {
       const user = JSON.parse(localStorage.getItem("user")) || {};
-      const res = await getAllProducts(user?.id);
+      const res = await getAllProducts(user?._id);
       // const product1 = {
       //   mainImage: "/images/featured-products/1.png",
       //   images: [

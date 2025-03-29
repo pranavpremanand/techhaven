@@ -10,7 +10,6 @@ import Link from "next/link";
 import Cookies from "js-cookie";
 import { logout } from "@/store/features/userSlice";
 import { useDispatch } from "react-redux";
-import { useAuth } from "@/hooks/useAuth";
 
 const dashboardOptions = [
   {
