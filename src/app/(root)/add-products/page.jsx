@@ -163,8 +163,8 @@
 import { useState } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
 import { uploadImageToCloudinary } from "@/utils/cloudinary";
+import toast from "react-hot-toast";
 
 const UploadProduct = () => {
   const {
@@ -244,13 +244,16 @@ const UploadProduct = () => {
       formData.append("upload_preset", UPLOAD_PRESET);
 
       try {
-        const res = await uploadImageToCloudinary(formData);
+        const res = await uploadImageToCloudinary(formData); //cloudinary upload area
+        console.log(res, "ress");
+
         urls.push(res.data.secure_url);
+        console.log(urls, "url");
       } catch (err) {
         console.error("Upload failed:", err);
       }
     }
-    setUploadedUrls(urls);
+    setUploadedUrls((prevUrls) => [...prevUrls, ...urls]);
     setImages([]);
     setPreview([]);
     setUploading(false);
@@ -305,12 +308,14 @@ const UploadProduct = () => {
                 >
                   {uploading ? "Uploading..." : "Upload Images"}
                 </button>
-                {uploadedUrls.length > 0 &&
-                  uploadedUrls.map((url, index) => (
-                    <div key={index}>
-                      <img src={url} alt="Uploaded" width="200" />
-                    </div>
-                  ))}
+                <div className="flex gap-5">
+                  {uploadedUrls.length > 0 &&
+                    uploadedUrls.map((url, index) => (
+                      <div key={index}>
+                        <img src={url} alt="Uploaded" width="200" />
+                      </div>
+                    ))}
+                </div>
               </div>
             </div>
 
