@@ -65,7 +65,7 @@ const page = () => {
         <div className="wrapper section-py space-y-7 md:space-y-14 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-[25rem,auto] xl:grid-cols-[30rem,auto] gap-10 w-full">
             <div className="w-full">
-              <SliderWithThumbnails />
+              <SliderWithThumbnails images={product.imageUrls} />
             </div>
             <motion.div
               initial={{ opacity: 0, y: 50 }}
@@ -115,10 +115,6 @@ const page = () => {
                 {/* <IoIosHeartEmpty size={25} className="text-red-600" /> */}
                 {/* Add to Wishlist
                 </button> */}
-              </div>
-              <div className="space-y-1">
-                <h5 className="text-lg">Description</h5>
-                {/* <p>{product.description}</p> */}
               </div>
               <AddToCartSection product={product} />
             </motion.div>

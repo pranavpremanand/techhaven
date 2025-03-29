@@ -66,7 +66,7 @@ const Flashsale = () => {
         transition={{ duration: 0.5 }}
         className="wrapper mt-9 grid sm:grid-cols-2 lg:grid-cols-[25%,1fr,1fr,1fr] gap-7"
       >
-        <div className="rounded-2xl overflow-hidden relative lg:h-[110%] aspect-[3/4] sm:aspect-auto">
+        <div className="rounded-2xl overflow-hidden relative aspect-[3/4] sm:aspect-auto">
           <div className="absolute bg-white/15 inset-0 w-full h-full flex flex-col justify-between gap-6 p-4">
             <h5 className="text-3xl font-semibold text-center pt-14 lg:pt-8 text-black">
               Up to 30% Off!

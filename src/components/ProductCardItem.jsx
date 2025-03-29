@@ -69,7 +69,7 @@ const ProductCardItem = ({ item }) => {
         className="aspect-square flex justify-center items-center relative"
       >
         <Image
-          src={productImages.mainImage}
+          src={item.imageUrls[0]}
           objectFit="cover"
           className="group-hover:scale-100 scale-90 group-hover:translate-y-3 transition-all duration-300 z-[1] relative rounded-2xl"
           alt={item.productName}

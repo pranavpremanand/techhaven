@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import ZoomImage from "./ZoomImage";
 import { productImages } from "@/content/constant";
 
-const SliderWithThumbnails = () => {
+const SliderWithThumbnails = ({images}) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const [sliderRef, slider] = useKeenSlider({
@@ -57,7 +57,7 @@ const SliderWithThumbnails = () => {
     >
       {/* Main Slider */}
       <div ref={sliderRef} className="keen-slider w-full">
-        {productImages.images.map((image, index) => (
+        {images.map((image, index) => (
           <div
             key={index}
             className="keen-slider__slide rounded-xl overflow-visible sm:aspect-video lg:aspect-auto flex justify-center bg-primary/10"
@@ -76,7 +76,7 @@ const SliderWithThumbnails = () => {
           <PiCaretLeftBold size={20} />
         </button>
         <div ref={thumbnailRef} className="keen-slider w-full">
-          {productImages.images.map((image, index) => (
+          {images.map((image, index) => (
             <div
               key={index}
               className={`keen-slider__slide aspect-square overflow-hidden rounded-lg cursor-pointer ${

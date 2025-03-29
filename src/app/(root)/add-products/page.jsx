@@ -89,7 +89,7 @@
 //                 <input
 //                   type="text"
 //                   {...register("firstName")}
-//                   className={`p-2 rounded-md outline-none border-2 w-full "text-black"`}
+//                   className={`p-2 rounded-md outline-none border-2 w-full text-black "text-black"`}
 //                 />
 //                 {errors.firstName && (
 //                   <small className="text-red-600">
@@ -104,7 +104,7 @@
 //                 <input
 //                   type="text"
 //                   {...register("lastName")}
-//                   className={`p-2 rounded-md outline-none border-2 w-full "text-black"`}
+//                   className={`p-2 rounded-md outline-none border-2 w-full text-black "text-black"`}
 //                 />
 //                 {errors.lastName && (
 //                   <small className="text-red-600">
@@ -121,7 +121,7 @@
 //                 <input
 //                   type="email"
 //                   {...register("email")}
-//                   className={`p-2 rounded-md outline-none border-2 w-full "text-black"`}
+//                   className={`p-2 rounded-md outline-none border-2 w-full text-black "text-black"`}
 //                 />
 //                 {errors.email && (
 //                   <small className="text-red-600">{errors.email.message}</small>
@@ -134,7 +134,7 @@
 //                 <input
 //                   type="tel"
 //                   {...register("phone")}
-//                   className={`p-2 rounded-md outline-none border-2 w-full "text-black"`}
+//                   className={`p-2 rounded-md outline-none border-2 w-full text-black "text-black"`}
 //                   placeholder="Enter phone number"
 //                 />
 //                 {errors.phone && (
@@ -165,11 +165,13 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { uploadImageToCloudinary } from "@/utils/cloudinary";
 import toast from "react-hot-toast";
+import { uploadImages } from "@/utils/api";
 
 const UploadProduct = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
   const [images, setImages] = useState([]);
@@ -245,12 +247,15 @@ const UploadProduct = () => {
 
       try {
         const res = await uploadImageToCloudinary(formData); //cloudinary upload area
-        console.log(res, "ress");
-
-        urls.push(res.data.secure_url);
-        console.log(urls, "url");
+        if (res.status === 200) {
+          toast.success("Image uploaded successfully.");
+          urls.push(res.data.secure_url);
+        } else {
+          toast.error("Image upload failed.");
+        }
       } catch (err) {
         console.error("Upload failed:", err);
+        toast.error("Image upload failed.");
       }
     }
     setUploadedUrls((prevUrls) => [...prevUrls, ...urls]);
@@ -266,13 +271,18 @@ const UploadProduct = () => {
     }
     const productDetails = { ...data, imageUrls: uploadedUrls };
     try {
-      const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/products`,
-        productDetails
-      );
-      console.log("Product saved:", res.data);
+      const res = await uploadImages(productDetails);
+      if (res.data.success) {
+        toast.success(res.data.message);
+        setUploadedUrls([]);
+        setImages([]);
+        setPreview([]);
+        reset();
+      } else {
+        toast.error(res.data.message);
+      }
     } catch (err) {
-      console.error("Error saving product:", err);
+      toast.error(err.message);
     }
   };
 
@@ -324,22 +334,25 @@ const UploadProduct = () => {
                 <label className="text-sm">Product Name</label>
                 <input
                   type="text"
-                  {...register("name", {
+                  {...register("productName", {
                     required: "Product name is required",
                   })}
-                  className="p-2 rounded-md outline-none border-2 w-full"
+                  className="p-2 rounded-md outline-none border-2 w-full text-black"
                 />
-                {errors.name && (
-                  <small className="text-red-600">{errors.name.message}</small>
+                {errors.productName && (
+                  <small className="text-red-600">
+                    {errors.productName.message}
+                  </small>
                 )}
               </div>
 
               <div className="flex flex-col gap-1">
                 <label className="text-sm">Price</label>
                 <input
-                  type="text"
+                  type="number"
                   {...register("price", { required: "Price is required" })}
-                  className="p-2 rounded-md outline-none border-2 w-full"
+                  className="p-2 rounded-md outline-none border-2 w-full text-black"
+                  min={0}
                 />
                 {errors.price && (
                   <small className="text-red-600">{errors.price.message}</small>
@@ -351,32 +364,51 @@ const UploadProduct = () => {
               <div className="flex flex-col gap-1">
                 <label className="text-sm">Offer Percentage</label>
                 <input
-                  type="text"
-                  {...register("offer", {
+                  type="number"
+                  min={0}
+                  {...register("offerPercentage", {
                     required: "Offer percentage is required",
                   })}
-                  className="p-2 rounded-md outline-none border-2 w-full"
+                  className="p-2 rounded-md outline-none border-2 w-full text-black"
                 />
-                {errors.offer && (
-                  <small className="text-red-600">{errors.offer.message}</small>
+                {errors.offerPercentage && (
+                  <small className="text-red-600">
+                    {errors.offerPercentage.message}
+                  </small>
                 )}
               </div>
 
               <div className="flex flex-col gap-1">
-                <label className="text-sm">Description</label>
+                <label className="text-sm">Quantity</label>
                 <input
-                  type="text"
-                  {...register("description", {
-                    required: "Description is required",
+                  type="number"
+                  {...register("quantity", {
+                    required: "Quantity is required",
                   })}
-                  className="p-2 rounded-md outline-none border-2 w-full"
+                  min={0}
+                  className="p-2 rounded-md outline-none border-2 w-full text-black"
                 />
-                {errors.description && (
+                {errors.quantity && (
                   <small className="text-red-600">
-                    {errors.description.message}
+                    {errors.quantity.message}
                   </small>
                 )}
               </div>
+            </div>
+            <div className="flex flex-col gap-1">
+              <label className="text-sm">Description</label>
+              <textarea
+                rows="5"
+                {...register("description", {
+                  required: "Description is required",
+                })}
+                className="p-2 rounded-md outline-none border-2 w-full text-black"
+              />
+              {errors.description && (
+                <small className="text-red-600">
+                  {errors.description.message}
+                </small>
+              )}
             </div>
 
             <div className="flex gap-5">

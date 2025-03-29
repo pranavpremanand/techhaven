@@ -36,7 +36,10 @@ export default function Home() {
       // };
       // const products = [product1];
       if (res.data.success) {
-        localStorage.setItem("products", JSON.stringify(res.data.products));
+        localStorage.setItem(
+          "products",
+          JSON.stringify(res.data.products.slice(0, 3))
+        );
       }
     } catch (err) {
       console.log(err.message);
