@@ -173,7 +173,15 @@ const UploadProduct = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      productName: "",
+      price: "",
+      offerPercentage: "",
+      description: "",
+      isOutOfStock: false,
+    },
+  });
   const [images, setImages] = useState([]);
   const [preview, setPreview] = useState([]);
   const [uploading, setUploading] = useState(false);
@@ -314,7 +322,7 @@ const UploadProduct = () => {
                 <button
                   type="button"
                   onClick={uploadImagesToCloudinary}
-                  className="primary-btn"
+                  className="primary-btn max-w-2xl"
                 >
                   {uploading ? "Uploading..." : "Upload Images"}
                 </button>
@@ -329,56 +337,59 @@ const UploadProduct = () => {
               </div>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="flex flex-col gap-1">
-                <label className="text-sm">Product Name</label>
-                <input
-                  type="text"
-                  {...register("productName", {
-                    required: "Product name is required",
-                  })}
-                  className="p-2 rounded-md outline-none border-2 w-full text-black"
-                />
-                {errors.productName && (
-                  <small className="text-red-600">
-                    {errors.productName.message}
-                  </small>
-                )}
+            <div className="space-y-4 max-w-2xl">
+              <div className="grid sm:grid-cols-1 gap-4">
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm">Product Name</label>
+                  <input
+                    type="text"
+                    {...register("productName", {
+                      required: "Product name is required",
+                    })}
+                    className="p-2 rounded-md outline-none border-2 w-full text-black"
+                  />
+                  {errors.productName && (
+                    <small className="text-red-600">
+                      {errors.productName.message}
+                    </small>
+                  )}
+                </div>
+
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm">Price</label>
+                  <input
+                    type="number"
+                    {...register("price", { required: "Price is required" })}
+                    className="p-2 rounded-md outline-none border-2 w-full text-black"
+                    min={0}
+                  />
+                  {errors.price && (
+                    <small className="text-red-600">
+                      {errors.price.message}
+                    </small>
+                  )}
+                </div>
               </div>
 
-              <div className="flex flex-col gap-1">
-                <label className="text-sm">Price</label>
-                <input
-                  type="number"
-                  {...register("price", { required: "Price is required" })}
-                  className="p-2 rounded-md outline-none border-2 w-full text-black"
-                  min={0}
-                />
-                {errors.price && (
-                  <small className="text-red-600">{errors.price.message}</small>
-                )}
-              </div>
-            </div>
+              <div className="grid sm:grid-cols-1 gap-4">
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm">Offer Percentage</label>
+                  <input
+                    type="number"
+                    min={0}
+                    {...register("offerPercentage", {
+                      required: "Offer percentage is required",
+                    })}
+                    className="p-2 rounded-md outline-none border-2 w-full text-black"
+                  />
+                  {errors.offerPercentage && (
+                    <small className="text-red-600">
+                      {errors.offerPercentage.message}
+                    </small>
+                  )}
+                </div>
 
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="flex flex-col gap-1">
-                <label className="text-sm">Offer Percentage</label>
-                <input
-                  type="number"
-                  min={0}
-                  {...register("offerPercentage", {
-                    required: "Offer percentage is required",
-                  })}
-                  className="p-2 rounded-md outline-none border-2 w-full text-black"
-                />
-                {errors.offerPercentage && (
-                  <small className="text-red-600">
-                    {errors.offerPercentage.message}
-                  </small>
-                )}
-              </div>
-
-              <div className="flex flex-col gap-1">
+                {/* <div className="flex flex-col gap-1">
                 <label className="text-sm">Quantity</label>
                 <input
                   type="number"
@@ -393,25 +404,36 @@ const UploadProduct = () => {
                     {errors.quantity.message}
                   </small>
                 )}
+              </div> */}
+              </div>
+              <div className="flex flex-col gap-1">
+                <label className="text-sm">Description</label>
+                <textarea
+                  rows="5"
+                  {...register("description", {
+                    required: "Description is required",
+                  })}
+                  className="p-2 rounded-md outline-none border-2 w-full text-black"
+                />
+                {errors.description && (
+                  <small className="text-red-600">
+                    {errors.description.message}
+                  </small>
+                )}
+              </div>
+              <div className="flex gap-2 mt-2">
+                <input
+                  type="checkbox"
+                  {...register("isOutOfStock")}
+                  className="rounded-md outline-none w-5 h-5 text-black accent-primary"
+                />
+                <label className="text-sm">
+                  Tick the checkbox if the product is out of stock
+                </label>
               </div>
             </div>
-            <div className="flex flex-col gap-1">
-              <label className="text-sm">Description</label>
-              <textarea
-                rows="5"
-                {...register("description", {
-                  required: "Description is required",
-                })}
-                className="p-2 rounded-md outline-none border-2 w-full text-black"
-              />
-              {errors.description && (
-                <small className="text-red-600">
-                  {errors.description.message}
-                </small>
-              )}
-            </div>
 
-            <div className="flex gap-5">
+            <div className="flex gap-5 mt-3">
               <button type="submit" className="primary-btn">
                 Add Product
               </button>

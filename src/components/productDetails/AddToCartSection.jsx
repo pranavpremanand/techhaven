@@ -24,7 +24,6 @@ const AddToCartSection = ({ product }) => {
   };
 
   const addItemToCart = async () => {
-
     const token = localStorage.getItem("token");
     if (!token) {
       toast.error("Please login to add items to cart");
@@ -50,27 +49,35 @@ const AddToCartSection = ({ product }) => {
       transition={{ duration: 0.5 }}
       className="grid sm:grid-cols-2 items-center gap-8"
     >
-      <div className="flex items-center gap-5">
-        Quantity
-        <div className="flex items-center gap-5">
-          <button
-            onClick={decrementQuantity}
-            className="w-10 h-10 flex items-center justify-center rounded-md bg-primary text-white"
-          >
-            <FaMinus size={15} />
-          </button>
-          <span className="text-xl w-[1rem] text-center">{quantity}</span>
-          <button
-            onClick={incrementQuantity}
-            className="w-10 h-10 flex items-center justify-center rounded-md bg-primary text-white"
-          >
-            <FaPlus size={15} />
+      {product.isOutOfStock ? (
+        <div className="grid sm:grid-cols-2 items-center gap-5">
+          <span className="p-3 rounded-lg flex items-center justify-center gap-2 shadow-xl bg-red-500 cursor-not-allowed text-white text-sm">Out of Stock</span>
+        </div>
+      ) : (
+        <div className="grid sm:grid-cols-2 items-center gap-8">
+          <div className="flex items-center gap-5">
+            Quantity
+            <div className="flex items-center gap-5">
+              <button
+                onClick={decrementQuantity}
+                className="w-10 h-10 flex items-center justify-center rounded-md bg-primary text-white"
+              >
+                <FaMinus size={15} />
+              </button>
+              <span className="text-xl w-[1rem] text-center">{quantity}</span>
+              <button
+                onClick={incrementQuantity}
+                className="w-10 h-10 flex items-center justify-center rounded-md bg-primary text-white"
+              >
+                <FaPlus size={15} />
+              </button>
+            </div>
+          </div>
+          <button onClick={addItemToCart} className="primary-btn">
+            Add to Cart
           </button>
         </div>
-      </div>
-      <button onClick={addItemToCart} className="primary-btn">
-        Add to Cart
-      </button>
+      )}
     </motion.div>
   );
 };

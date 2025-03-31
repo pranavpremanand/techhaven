@@ -86,28 +86,34 @@ const ProductCardItem = ({ item }) => {
         <p className="pb-3">
           <span className="text-white">₹ {item.totalPrice}</span>
         </p>
-        {itemIsInCart ? (
-          <div className="px-3 py-2 flex gap-3 border rounded-xl border-primary">
+        {!item.isOutOfStock ? (
+          itemIsInCart ? (
+            <div className="px-3 py-2 flex gap-3 border rounded-xl border-primary">
+              <button
+                onClick={decrementQuantity}
+                className="hover:opacity-70 w-[2rem] h-[2rem] rounded-sm bg-white text-black/80 flex items-center justify-center"
+              >
+                <FaMinus size={20} />
+              </button>
+              <span className="text-xl w-[2rem] text-center">{quantity}</span>
+              <button
+                onClick={incrementQuantity}
+                className="hover:opacity-70 w-[2rem] h-[2rem] rounded-sm bg-white text-black/80 flex items-center justify-center"
+              >
+                <FaPlus size={20} />
+              </button>
+            </div>
+          ) : (
             <button
-              onClick={decrementQuantity}
-              className="hover:opacity-70 w-[2rem] h-[2rem] rounded-sm bg-white text-black/80 flex items-center justify-center"
+              onClick={() => handleAddToCart(1)}
+              className="uppercase underline underline-offset-4 text-white hover:text-black transition-all duration-300 tracking-wide"
             >
-              <FaMinus size={20} />
+              Add to cart
             </button>
-            <span className="text-xl w-[2rem] text-center">{quantity}</span>
-            <button
-              onClick={incrementQuantity}
-              className="hover:opacity-70 w-[2rem] h-[2rem] rounded-sm bg-white text-black/80 flex items-center justify-center"
-            >
-              <FaPlus size={20} />
-            </button>
-          </div>
+          )
         ) : (
-          <button
-            onClick={() => handleAddToCart(1)}
-            className="uppercase underline underline-offset-4 text-white hover:text-black transition-all duration-300 tracking-wide"
-          >
-            Add to cart
+          <button className="uppercase underline-offset-4 text-red-500 cursor-not-allowed tracking-wide">
+            Out of Stock
           </button>
         )}
       </div>
