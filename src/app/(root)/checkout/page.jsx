@@ -106,7 +106,8 @@ const page = () => {
     try {
       const res = await createUserAddress(data);
       if (res.data.success) {
-        setUserData(res.data);
+        let data = res.data.address.addresses.find((item) => item.isDefault);
+        setUserData(data);
         setDefaultAddressExist(true);
         toast.success(res.data.message);
         setEdittingUserData(false);
@@ -125,6 +126,8 @@ const page = () => {
       toast.error("Please add address to proceed", { id: "error" });
       return;
     }
+
+    console.log(userData);
 
     doPayment({ isExpressDelivery, userData });
   };

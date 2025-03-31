@@ -62,8 +62,7 @@ export const doPayment = async ({ isExpressDelivery, userData }) => {
             `;
 
             const payload = {
-              to: `
-              ${companyDetails.email}`,
+              to: `${companyDetails.email}`,
               body: body,
               subject: "New Order Placed - Payment Received",
               name: "ARK For Ease",
@@ -75,7 +74,7 @@ export const doPayment = async ({ isExpressDelivery, userData }) => {
             );
 
             toast.success("Payment successful! Order placed.");
-            window.location.href = "/order/success";
+            // window.location.href = "/order/success";
           } else {
             toast.error("Payment verification failed");
           }
