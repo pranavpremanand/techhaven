@@ -92,9 +92,7 @@ const page = () => {
               </div>
               <div className="flex items-center gap-3">
                 <h3 className="text3 font-semibold inline-block">
-                  ₹
-                  {product.price -
-                    (product.price * product.offerPercentage) / 100}
+                  ₹{product.totalPrice}
                 </h3>
                 <del className="text-gray-500">₹{product.price}</del>
               </div>

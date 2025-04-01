@@ -11,7 +11,7 @@ import { categories } from "./Header";
 
 const Footer = () => {
   return (
-    <div className="pt-7 md:pt-14 text-sm">
+    <div className="pt-7 md:pt-14 text-sm border-t border-white/20">
       <div className="wrapper grid md:grid-cols-[1fr,auto,auto] gap-10 md:gap-20">
         <div className="max-w-[20rem]">
           <div className="space-y-1 flex flex-col md:items-center">

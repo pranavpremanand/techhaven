@@ -47,14 +47,14 @@ const AddToCartSection = ({ product }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="grid sm:grid-cols-2 items-center gap-8"
+      className=""
     >
       {product.isOutOfStock ? (
         <div className="grid sm:grid-cols-2 items-center gap-5">
           <span className="p-3 rounded-lg flex items-center justify-center gap-2 shadow-xl bg-red-500 cursor-not-allowed text-white text-sm">Out of Stock</span>
         </div>
       ) : (
-        <div className="grid sm:grid-cols-2 items-center gap-8">
+        <div className="grid sm:flex items-center gap-8">
           <div className="flex items-center gap-5">
             Quantity
             <div className="flex items-center gap-5">
@@ -73,7 +73,7 @@ const AddToCartSection = ({ product }) => {
               </button>
             </div>
           </div>
-          <button onClick={addItemToCart} className="primary-btn">
+          <button onClick={addItemToCart} className="primary-btn min-w-[15rem]">
             Add to Cart
           </button>
         </div>

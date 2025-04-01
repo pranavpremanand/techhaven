@@ -1,5 +1,4 @@
 "use client";
-import BrandLogos from "@/components/BrandLogos";
 import EditorsBestChoice from "@/components/EditorsBestChoice";
 import { categories } from "@/components/Header";
 import ProductCardItem from "@/components/ProductCardItem";
@@ -125,7 +124,6 @@ const page = () => {
         {/* <EditorsBestChoice />
         <RecentlyViewed /> */}
       </div>
-      <BrandLogos />
     </>
   );
 };

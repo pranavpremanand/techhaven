@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import FeaturedProductsSection from "@/components/home/FeaturedProductsSection";
 import EditorsBestChoice from "@/components/EditorsBestChoice";
-import BrandLogos from "@/components/BrandLogos";
 import { motion } from "framer-motion";
 import { getAllProducts } from "@/utils/api";
 import toast from "react-hot-toast";
@@ -121,7 +120,6 @@ export default function Home() {
       </section>
       {/* <FeaturedProductsSection /> */}
       {/* <EditorsBestChoice /> */}
-      <BrandLogos />
     </div>
   );
 }
