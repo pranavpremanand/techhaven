@@ -76,16 +76,18 @@ const ProductCardItem = ({ item }) => {
         />
         <div className="absolute h-full w-full inset-0 bg-white rounded-2xl aspect-square group-hover:rotate-12 group-hover:scale-75 transition-all duration-300 z-0" />
       </Link>
-      <div className="p-5 flex flex-col items-center space-y-2">
-        <Link
-          href={`/product/${item._id}`}
-          className="text-lg text-center link hover:!text-black"
-        >
-          {item.productName}
-        </Link>
-        <p className="pb-3">
-          <span className="text-white">₹ {item.totalPrice}</span>
-        </p>
+      <div className="p-5 flex flex-col justify-between items-center space-y-2">
+        <div className="flex flex-col items-center space-y-2 flex-1">
+          <Link
+            href={`/product/${item._id}`}
+            className="text-lg text-center link hover:!text-black"
+          >
+            {item.productName}
+          </Link>
+          <p className="pb-3">
+            <span className="text-white">₹ {item.totalPrice}</span>
+          </p>
+        </div>
         {!item.isOutOfStock ? (
           itemIsInCart ? (
             <div className="px-3 py-2 flex gap-3 border rounded-xl border-primary">
