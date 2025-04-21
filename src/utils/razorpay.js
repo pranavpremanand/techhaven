@@ -66,17 +66,17 @@ export const doPayment = async ({
             })}
             `;
 
-            // const payload = {
-            //   to: `${companyDetails.email}`,
-            //   body: body,
-            //   subject: "New Order Placed - Payment Received",
-            //   name: "ARK For Ease",
-            // };
+            const payload = {
+              to: `${companyDetails.email}`,
+              body: body,
+              subject: "New Order Placed - Payment Received",
+              name: "ARK For Ease",
+            };
 
-            // const res = await axios.post(
-            //   "https://send-mail-redirect-boostmysites.vercel.app/send-email",
-            //   payload
-            // );
+            await axios.post(
+              "https://send-mail-redirect-boostmysites.vercel.app/send-email",
+              payload
+            );
 
             toast.success("Payment successful! Order placed.");
             window.location.href = "/order/success";
