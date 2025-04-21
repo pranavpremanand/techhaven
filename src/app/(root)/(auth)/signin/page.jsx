@@ -49,7 +49,7 @@ const page = () => {
       }
     } catch (err) {
       if (err?.response?.data) {
-        toast.error(err?.response?.data?.message);
+        toast.error(err?.response?.data?.error);
       } else {
         toast.error(err.message);
       }
@@ -109,33 +109,6 @@ const page = () => {
           </button>
         </div>
       </form>
-      {/* <div className="mt-6">
-          <div className="relative">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-300" />
-            </div>
-            <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white text-gray-500">or</span>
-            </div>
-          </div>
-          <div className="mt-6 space-y-4">
-            <button
-              type="button"
-              className="w-full flex items-center justify-center px-4 py-2 border border-gray-300 rounded-sm shadow-sm text-sm font-medium bg-white hover:bg-gray-50"
-            >
-              <FcGoogle className="w-5 h-5 mr-2" />
-              Login with Google
-            </button>
-          </div>
-        </div> */}
-      {/* <div className="mt-6 text-center">
-        <p className="text-sm text-gray-600">
-          Don't have an account?{" "}
-          <a href="#" className="text-blue-600 hover:text-primary">
-            Sign Up
-          </a>
-        </p>
-      </div> */}
     </div>
   );
 };

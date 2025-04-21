@@ -1,6 +1,6 @@
 const { default: axios } = require("axios");
 
-const baseUrl = process.env.NEXT_PUBLIC_BACKEND_BASE_URL;
+export const baseUrl = process.env.NEXT_PUBLIC_BACKEND_BASE_URL;
 
 // Create an Axios instance
 const request = axios.create({
@@ -31,7 +31,7 @@ export const changePassword = (data) =>
 
 // get all products
 export const getAllProducts = (userId) =>
-  axios.get(`${baseUrl}/products/${userId}`);
+  axios.post(`${baseUrl}/products`, { userId });
 
 // get single product
 export const getSingleProduct = (id) =>
@@ -86,5 +86,4 @@ export const deleteAddress = (id) =>
   request.delete(`${baseUrl}/address/addressDelete/${id}`);
 
 // upload image
-export const uploadImages = (data) =>
-  axios.post(`${baseUrl}/products`, data);
+export const uploadImages = (data) => axios.post(`${baseUrl}/products`, data);

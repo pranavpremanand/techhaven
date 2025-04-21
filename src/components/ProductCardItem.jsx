@@ -56,8 +56,7 @@ const ProductCardItem = ({ item }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
       className="group bg-primary rounded-2xl space-y-3 overflow-hidden transition-all duration-300 relative"
@@ -69,14 +68,14 @@ const ProductCardItem = ({ item }) => {
         <Image
           src={item.imageUrls[0]}
           objectFit="cover"
-          className="group-hover:scale-100 scale-90 group-hover:translate-y-3 transition-all duration-300 z-[1] relative rounded-2xl"
+          className="group-hover:scale-[90%] group-hover:rotate-2 scale-[85%] group-hover:translate-y-3 transition-all duration-300 z-[1] relative rounded-2xl"
           alt={item.productName}
           width={350}
           height={350}
         />
-        <div className="absolute h-full w-full inset-0 bg-white rounded-2xl aspect-square group-hover:rotate-12 group-hover:scale-75 transition-all duration-300 z-0" />
+        {/* <div className="absolute h-full w-full inset-0 bg-white/80 rounded-2xl aspect-square group-hover:scale-y-[350%] group-hover:bg-black/10 transition-all duration-300 z-0" /> */}
       </Link>
-      <div className="p-5 flex flex-col justify-between items-center space-y-2">
+      <div className="p-5 flex flex-col justify-between items-center space-y-2 relative z-[1]">
         <div className="flex flex-col items-center space-y-2 flex-1">
           <Link
             href={`/product/${item._id}`}

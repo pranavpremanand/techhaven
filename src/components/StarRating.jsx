@@ -4,6 +4,7 @@ const RatingStars = ({ rating, size, className }) => {
   const totalStars = 5;
   const filledStars = Math.floor(rating);
   const emptyStars = totalStars - filledStars;
+  console.log(rating);
 
   return (
     <div className="flex items-center gap-[.1rem]">

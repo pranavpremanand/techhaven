@@ -60,7 +60,7 @@ const page = () => {
       }
     } catch (err) {
       if (err?.response?.data) {
-        toast.error(err?.response?.data?.message);
+        toast.error(err?.response?.data?.error);
       } else {
         toast.error(err.message);
       }

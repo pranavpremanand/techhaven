@@ -24,13 +24,12 @@ const dashboardOptions = [
     icon: <FaBoxOpen size={20} />,
     path: "/profile/orders",
   },
-  {
-    id: 3,
-    label: "Saved Items",
-    icon: <BsBookmarkHeartFill size={20} />,
-    // path: "/profile/#",
-    path: "/profile/wishlist",
-  },
+  // {
+  //   id: 3,
+  //   label: "Saved Items",
+  //   icon: <BsBookmarkHeartFill size={20} />,
+  //   path: "/profile/wishlist",
+  // },
   {
     id: 4,
     label: "Manage Addresses",
@@ -55,11 +54,11 @@ const layout = ({ children }) => {
     Cookies.remove("token"); // Clear cookies
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    router.push("/signin");
+    router.replace("/signin");
   };
 
   return (
-    <div className="space-y-8 header-height">
+    <div className="space-y-8 header-height pb-10">
       <div className="bg-white text-[#5F6C72] py-4 sm:py-5">
         <div className="wrapper flex items-center gap-3">
           <div className="hidden sm:flex items-center gap-2">
@@ -69,13 +68,7 @@ const layout = ({ children }) => {
           <span>User Account</span>
           <PiCaretRight size={17} />
           <span className="text-[#2DA5F3]">
-            {
-              // pathname.startsWith("/profile/orders/") &&
-              // pathname !== "/profile/orders"
-              //   ? "Order Details"
-              //   :
-              dashboardOptions.find((item) => item.path === pathname).label
-            }
+            {dashboardOptions.find((item) => item.path === pathname).label}
           </span>
         </div>
       </div>

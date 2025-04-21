@@ -17,11 +17,12 @@ const cartSlice = createSlice({
       if (existingItem) {
         // Update quantity and subtotal for existing item
         existingItem.quantity = action.payload.quantity;
-        existingItem.subtotal = Math.round(
+        const discountPrice =
           existingItem.productId.price *
-            (1 - existingItem.productId.offerPercentage / 100) *
-            existingItem.quantity
-        );
+          (1 - existingItem.productId.offerPercentage / 100);
+        console.log({ discountPrice });
+        existingItem.subtotal =
+          Math.round(discountPrice) * existingItem.quantity;
       } else {
         // Add new item to the cart
         state.cartItems.unshift(action.payload);

@@ -92,19 +92,11 @@ const Page = () => {
                   <td>
                     <Link
                       href={`/order/${order._id}`}
-                      className="primary-btn !rounded-none"
+                      className="primary-btn hover:!translate-y-0 !rounded-none"
                     >
                       View Details
                     </Link>
                   </td>
-                  {/* <td className="py-2 px-4 border-b">
-                    <button
-                      // onClick={() => generatePDF(order)}
-                      className="primary-btn !px-3 !py-2 hover:!translate-y-0"
-                    >
-                      Download Invoice
-                    </button>
-                  </td> */}
                 </tr>
               ))}
             </tbody>

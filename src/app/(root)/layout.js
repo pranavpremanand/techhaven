@@ -1,5 +1,5 @@
 import { Poppins } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import "keen-slider/keen-slider.min.css";
 import Header from "@/components/Header";
 import BottomTabOptions from "@/components/BottomTabOptions";
@@ -21,19 +21,17 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={`${poppins.variable} antialiased`}>
-      <ReduxProvider>
-      <SpinnerContextProvider>
-        <Header />
-        <BottomTabOptions />
-        <Toaster/>
-        <main>
-          {children}
-        </main>
-        <Footer/>
-      </SpinnerContextProvider>
-      </ReduxProvider>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${poppins.variable} antialiased`} suppressHydrationWarning>
+        <ReduxProvider>
+          <SpinnerContextProvider>
+            <Header />
+            <BottomTabOptions />
+            <Toaster />
+            <main>{children}</main>
+            <Footer />
+          </SpinnerContextProvider>
+        </ReduxProvider>
       </body>
     </html>
   );

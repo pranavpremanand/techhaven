@@ -6,9 +6,6 @@ export function middleware(request) {
   // Access cookies using request.cookies
   const token = request.cookies.get("token")?.value;
 
-  // Log all cookies for debugging
-  const cookies = request.cookies.getAll();
-
   // Auth routes
   if (["/signin", "/signup"].includes(pathname)) {
     if (token) {

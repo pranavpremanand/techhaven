@@ -129,7 +129,7 @@ const page = () => {
 
     console.log(userData);
 
-    doPayment({ isExpressDelivery, userData });
+    doPayment({ isExpressDelivery, userData,setPageLoader });
   };
 
   return (

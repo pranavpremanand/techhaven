@@ -3,7 +3,11 @@ import { createOrder, verifyPayment } from "./api";
 import axios from "axios";
 import { companyDetails } from "@/content/constant";
 
-export const doPayment = async ({ isExpressDelivery, userData }) => {
+export const doPayment = async ({
+  isExpressDelivery,
+  userData,
+  setPageLoader,
+}) => {
   const rzpKey = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID.trim();
   try {
     // Step 1: Create a Razorpay order using Axios
@@ -19,6 +23,7 @@ export const doPayment = async ({ isExpressDelivery, userData }) => {
       description: "Payment for your order",
       order_id: order.id, // Razorpay order ID
       handler: async function (response) {
+        setPageLoader(true);
         // Handle successful payment
         console.log("Payment successful:", response);
         // toast.success("Payment successful! Order placed.");
@@ -61,20 +66,21 @@ export const doPayment = async ({ isExpressDelivery, userData }) => {
             })}
             `;
 
-            const payload = {
-              to: `${companyDetails.email}`,
-              body: body,
-              subject: "New Order Placed - Payment Received",
-              name: "ARK For Ease",
-            };
+            // const payload = {
+            //   to: `${companyDetails.email}`,
+            //   body: body,
+            //   subject: "New Order Placed - Payment Received",
+            //   name: "ARK For Ease",
+            // };
 
-            const res = await axios.post(
-              "https://send-mail-redirect-boostmysites.vercel.app/send-email",
-              payload
-            );
+            // const res = await axios.post(
+            //   "https://send-mail-redirect-boostmysites.vercel.app/send-email",
+            //   payload
+            // );
 
             toast.success("Payment successful! Order placed.");
-            // window.location.href = "/order/success";
+            window.location.href = "/order/success";
+            setPageLoader(false);
           } else {
             toast.error("Payment verification failed");
           }

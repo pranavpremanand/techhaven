@@ -28,13 +28,12 @@ const page = () => {
   }, [cartItems]);
 
   const calculateTotal = () => {
-    const subtotal = cartItems.reduce((acc, item) => {
-      const productAmt =
-        item.subtotal
-      return acc + productAmt
+    const subTotal = cartItems.reduce((acc, item) => {
+      const productAmt = item.subtotal;
+      return acc + productAmt;
     }, 0);
-    setSubtotal(subtotal);
-    setTotal(subtotal + shippingCharge);
+    setSubtotal(subTotal);
+    setTotal(subTotal + shippingCharge);
   };
 
   // Get cart data
@@ -43,6 +42,7 @@ const page = () => {
       dispatch(setLoading(true));
       const res = await getCartData();
       if (res.data.cart) {
+        console.log(res.data.cart)
         dispatch(setCartItems(res.data.cart.items));
       }
     } catch (err) {

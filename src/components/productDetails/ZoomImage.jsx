@@ -27,18 +27,6 @@ const ZoomImage = ({ image }) => {
     }
   };
 
-//   const handleClick = () => {
-//     if (zoomLevel === 1) {
-//       // Zoom in
-//       setZoomLevel(2);
-//       setIsZoomVisible(true);
-//     } else {
-//       // Zoom out
-//       setZoomLevel(1);
-//       setIsZoomVisible(false);
-//     }
-//   };
-
   const handleMouseEnter = () => {
     if (zoomLevel === 1) {
       setIsHovered(true);
