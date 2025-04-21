@@ -59,7 +59,7 @@ const ProductCardItem = ({ item }) => {
       initial={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="group bg-primary rounded-2xl space-y-3 overflow-hidden transition-all duration-300 relative"
+      className="group flex flex-col bg-primary rounded-2xl space-y-3 overflow-hidden transition-all duration-300 relative"
     >
       <Link
         href={`/product/${item._id}`}
@@ -75,7 +75,7 @@ const ProductCardItem = ({ item }) => {
         />
         {/* <div className="absolute h-full w-full inset-0 bg-white/80 rounded-2xl aspect-square group-hover:scale-y-[350%] group-hover:bg-black/10 transition-all duration-300 z-0" /> */}
       </Link>
-      <div className="p-5 flex flex-col justify-between items-center space-y-2 relative z-[1]">
+      <div className="p-5 flex flex-col flex-1 justify-between items-center space-y-2 relative z-[1]">
         <div className="flex flex-col items-center space-y-2 flex-1">
           <Link
             href={`/product/${item._id}`}
