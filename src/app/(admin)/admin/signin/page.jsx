@@ -44,12 +44,12 @@ const page = () => {
         // Cookies.set("token", res.data.token, { expires: 7 });
         router.push("/admin");
       } else {
-        toast.error(res.data.error);
+        toast.error(res.data.message);
       }
     } catch (err) {
       console.log(err)
       if (err?.response?.data) {
-        toast.error(err?.response?.data?.error);
+        toast.error(err?.response?.data?.message);
       } else {
         toast.error(err.message);
       }
