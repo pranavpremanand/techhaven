@@ -168,7 +168,7 @@ const Dashboard = () => {
             {recentOrders.map((order) => (
               <OrderCard
                 key={order._id}
-                orderId={order.orderId}
+                orderId={order._id}
                 date={new Date(order.createdAt).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "short",
