@@ -22,18 +22,6 @@ export default function Home() {
     try {
       const user = JSON.parse(localStorage.getItem("user")) || {};
       const res = await getAllProducts(user?._id);
-      // const product1 = {
-      //   mainImage: "/images/featured-products/1.png",
-      //   images: [
-      //     "/images/product-details/1.webp",
-      //     "/images/product-details/2.webp",
-      //     "/images/product-details/3.webp",
-      //     "/images/product-details/4.webp",
-      //   ],
-      //   ...res.data[0],
-      //   category: "Electronics & Gadgets",
-      // };
-      // const products = [product1];
       if (res.data.success) {
         localStorage.setItem(
           "products",
@@ -41,7 +29,6 @@ export default function Home() {
         );
       }
     } catch (err) {
-      console.log(err.message);
       toast.error(err.message);
     }
   };
