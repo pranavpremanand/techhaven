@@ -43,12 +43,12 @@ const Header = () => {
         <div className="hidden lg:flex bg-primary py-3">
           <div className="wrapper w-full flex justify-between gap-8">
             <div className="flex items-center gap-5">
-              <div className="flex items-center gap-2">
+              {/* <div className="flex items-center gap-2">
                 <FaPhone size={15} />
                 <Link href={`tel:${companyDetails.phone}`}>
                   {companyDetails.phone}
                 </Link>
-              </div>
+              </div> */}
               <div className="flex items-center gap-2">
                 <MdMail size={20} />
                 <Link href={`mailto:${companyDetails.email}`}>

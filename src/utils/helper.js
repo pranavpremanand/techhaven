@@ -102,7 +102,7 @@ const InvoiceDocument = ({ invoiceData }) => (
           <Text style={styles.heading}>From:</Text>
           <Text style={styles.text}>{companyDetails.name}</Text>
           <Text style={styles.text}>{companyDetails.location}</Text>
-          <Text style={styles.text}>Phone: {companyDetails.phone}</Text>
+          {/* <Text style={styles.text}>Phone: {companyDetails.phone}</Text> */}
           <Text style={styles.text}>Email: {companyDetails.email}</Text>
           {/* <Text style={styles.text}>GST: {invoiceData.seller?.gst || "GST Number"}</Text> */}
         </View>

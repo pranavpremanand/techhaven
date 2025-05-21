@@ -22,7 +22,7 @@ export const ProductDeleteConfirmation = ({ productId, visible, onHide }) => {
         queryClient.invalidateQueries(["products"]);
       }
     } catch (err) {
-      toast.error(err.response?.data?.message || "Failed to delete product");
+      toast.error(err.response?.data?.error || "Failed to delete product");
     } finally {
       setIsDeleting(false);
     }

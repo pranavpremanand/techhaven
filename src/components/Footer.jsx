@@ -79,7 +79,7 @@ const Footer = () => {
         <div className="space-y-3 flex flex-col">
           <h4 className="text-lg font-semibold">Contact</h4>
           <ul className="space-y-3">
-            <li>
+            {/* <li>
               <Link
                 href={`tel:${companyDetails.phone}`}
                 className="link flex items-center gap-1"
@@ -87,7 +87,7 @@ const Footer = () => {
                 <PiPhone size={25} />
                 {companyDetails.phone}
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link
                 href={`mailto:${companyDetails.email}`}

@@ -167,7 +167,7 @@ const Page = () => {
         toast.error(res.data.message);
       }
     } catch (err) {
-      toast.error(err.response?.data?.message || "Failed to add product");
+      toast.error(err.response?.data?.error || "Failed to add product");
       console.error(err);
     }
   };

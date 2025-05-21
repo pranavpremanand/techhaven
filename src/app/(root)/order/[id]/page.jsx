@@ -134,12 +134,6 @@ export default function page() {
 
         <div className="flex gap-5 mt-6 items-center">
           <InvoicePDF invoiceData={invoiceData} />
-          {/* <button
-            onClick={()=>generatePDF(invoiceData)}
-            className="primary-btn !px-3 !py-2 hover:!translate-y-0"
-          >
-            Download Invoice
-          </button> */}
           <Link href="/profile/orders" className="link text-sm">
             Back to Orders
           </Link>
