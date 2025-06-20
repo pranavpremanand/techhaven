@@ -103,7 +103,7 @@ const InvoiceDocument = ({ invoiceData }) => (
           <Text style={styles.text}>{companyDetails.name}</Text>
           <Text style={styles.text}>{companyDetails.location}</Text>
           {/* <Text style={styles.text}>Phone: {companyDetails.phone}</Text> */}
-          <Text style={styles.text}>Email: {companyDetails.email}</Text>
+          {/* <Text style={styles.text}>Email: {companyDetails.email}</Text> */}
           {/* <Text style={styles.text}>GST: {invoiceData.seller?.gst || "GST Number"}</Text> */}
         </View>
 
@@ -165,7 +165,7 @@ const InvoiceDocument = ({ invoiceData }) => (
       {/* Footer */}
       <View style={styles.footer}>
         <Text>Thank you for your business!</Text>
-        <Text>For any inquiries, please contact {companyDetails.email}</Text>
+        {/* <Text>For any inquiries, please contact {companyDetails.email}</Text> */}
       </View>
     </Page>
   </Document>

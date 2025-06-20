@@ -76,9 +76,9 @@ const Footer = () => {
             </li>
           </ul>
         </div> */}
-        <div className="space-y-3 flex flex-col">
+        {/* <div className="space-y-3 flex flex-col">
           <h4 className="text-lg font-semibold">Contact</h4>
-          <ul className="space-y-3">
+          <ul className="space-y-3"> */}
             {/* <li>
               <Link
                 href={`tel:${companyDetails.phone}`}
@@ -88,7 +88,7 @@ const Footer = () => {
                 {companyDetails.phone}
               </Link>
             </li> */}
-            <li>
+            {/* <li>
               <Link
                 href={`mailto:${companyDetails.email}`}
                 className="link flex items-center gap-2"
@@ -96,8 +96,8 @@ const Footer = () => {
                 <IoMailOutline size={22} />
                 {companyDetails.email}
               </Link>
-            </li>
-          </ul>
+            </li> */}
+          {/* </ul> */}
           {/* <div className="flex items-center gap-5 pt-5">
             <Link
               href="/"
@@ -124,7 +124,7 @@ const Footer = () => {
               <FaLinkedinIn size={20} className="group-hover:text-primary" />
             </Link>
           </div> */}
-        </div>
+        {/* </div> */}
       </div>
       <div className="bg-primary pt-3 mt-10 pb-[5rem] lg:pb-3">
         <div className="wrapper text-center">

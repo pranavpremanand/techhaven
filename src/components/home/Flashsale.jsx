@@ -64,9 +64,10 @@ const Flashsale = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="wrapper mt-9 grid sm:grid-cols-2 lg:grid-cols-[25%,1fr,1fr,1fr] gap-7"
+        className="wrapper mt-9 grid sm:grid-cols-2 lg:grid-cols-[1fr,1fr,1fr,1fr] gap-7"
+        // className="wrapper mt-9 grid sm:grid-cols-2 lg:grid-cols-[25%,1fr,1fr,1fr] gap-7"
       >
-        <div className="rounded-2xl overflow-hidden relative aspect-[3/4] sm:aspect-auto">
+        {/* <div className="rounded-2xl overflow-hidden relative aspect-[3/4] sm:aspect-auto">
           <div className="absolute bg-white/15 inset-0 w-full h-full flex flex-col justify-between gap-6 p-4">
             <h5 className="text-3xl font-semibold text-center pt-14 lg:pt-8 text-black">
               Up to 30% Off!
@@ -106,20 +107,12 @@ const Flashsale = () => {
                     <p>Mins</p>
                   </div>
                 </div>
-                {/* {timeLeft.days === 0 && (
-                  <div className="space-y-2">
-                    <div className="w-2 h-2 bg-white rounded-full" />
-                    <div className="w-2 h-2 bg-white rounded-full" />
-                  </div>
-                )} */}
-                {/* {timeLeft.days === 0 && ( */}
                 <div className="flex items-center gap-2 col-span-5">
                   <div className="bg-black w-full py-2 text-center flex flex-col items-center justify-center rounded-xl">
                     <h4 className="text-xl font-bold">{timeLeft.seconds}</h4>
                     <p>Sec</p>
                   </div>
                 </div>
-                {/* )} */}
               </div>
             </div>
           </div>
@@ -150,42 +143,11 @@ const Flashsale = () => {
               }}
             />
           )}
-        </div>
+        </div> */}
         {products.length > 0 &&
           isClient &&
           products.map((item) => (
             <ProductCardItem key={item._id} item={item} />
-            // <div
-            //   key={item.title}
-            //   className="rounded-2xl overflow-hidden border transition-all duration-300 cursor-pointer hover:bg-primary group"
-            // >
-            //   <Link
-            //     href="/product/1"
-            //     className="aspect-[3/3.2] w-full overflow-hidden"
-            //   >
-            //     <Image
-            //       src={item.image}
-            //       alt={item.title}
-            //       width={400}
-            //       height={450}
-            //       className="object-contain w-full bg-white aspect-square group-hover:scale-110 transition-all duration-300"
-            //     />
-            //   </Link>
-            //   <div className="p-5 flex flex-col items-center space-y-2">
-            //     <p className="text-lg text-center">{item.title}</p>
-            //     <p>
-            //       <del>₹{item.price}</del> -{" "}
-            //       <span className="text-primary group-hover:text-black">
-            //         ₹{item.offerPrice}
-            //       </span>
-            //     </p>
-            //     <div className="w-full pt-2">
-            //       <div className="w-full flex justify-end">
-            //         <p>Sold: {item.sold}</p>
-            //       </div>
-            //     </div>
-            //   </div>
-            // </div>
           ))}
       </motion.div>
     </section>

@@ -49,12 +49,12 @@ const Header = () => {
                   {companyDetails.phone}
                 </Link>
               </div> */}
-              <div className="flex items-center gap-2">
+              {/* <div className="flex items-center gap-2">
                 <MdMail size={20} />
                 <Link href={`mailto:${companyDetails.email}`}>
                   {companyDetails.email}
                 </Link>
-              </div>
+              </div> */}
             </div>
             {/* <div className="hidden lg:flex items-center gap-5">
               <div className="flex items-center gap-2">

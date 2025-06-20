@@ -40,7 +40,7 @@ export default function Home() {
     <div className="">
       <Banner />
       <Flashsale />
-      <section className="section-py">
+      {/* <section className="section-py">
         <div className="wrapper grid lg:grid-cols-2 gap-10">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -104,7 +104,7 @@ export default function Home() {
             </Link>
           </motion.div>
         </div>
-      </section>
+      </section> */}
       {/* <FeaturedProductsSection /> */}
       {/* <EditorsBestChoice /> */}
     </div>
